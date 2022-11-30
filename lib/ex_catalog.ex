@@ -9,7 +9,7 @@ defmodule ExCatalog do
   ## Examples
 
       iex> ExCatalog.version()
-      vx.x.x
+
 
   """
   @version Mix.Project.config()[:version]
