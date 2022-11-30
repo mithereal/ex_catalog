@@ -17,4 +17,7 @@ defmodule ExCatalog.Application do
     opts = [strategy: :one_for_one, name: ExCatalog.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  @version Mix.Project.config()[:version]
+  def version, do: @version
 end
