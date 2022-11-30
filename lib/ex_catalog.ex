@@ -4,15 +4,14 @@ defmodule ExCatalog do
   """
 
   @doc """
-  Hello world.
+  List version.
 
   ## Examples
 
-      iex> ExCatalog.hello()
-      :world
+      iex> ExCatalog.version()
+      vx.x.x
 
   """
-  def hello do
-    :world
-  end
+  @version Mix.Project.config()[:version]
+  def version, do: @version
 end

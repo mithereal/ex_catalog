@@ -1,6 +1,6 @@
 # ExCatalog
 
-**TODO: Add description**
+** A General E-commerce Catalog System **
 
 ## Installation
 
@@ -10,7 +10,7 @@ by adding `ex_catalog` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_catalog, "~> 0.1.0"}
+    {:ex_catalog, ">= 0.0.0"}
   ]
 end
 ```
