@@ -1,5 +1,6 @@
 defmodule ExCatalog.Product do
-  defstruct sku: nil,
+  defstruct id: nil,
+            sku: nil,
             price: 0,
             qty: 0,
             name: nil,
