@@ -6,8 +6,11 @@ defmodule ExCatalog.Application do
   use Application
 
   @impl true
-  def start(_type, _args) do
+  def start(_type, args) do
+    [repo] = Application.get_env(:ex_catalog, :ecto_repos)
+
     children = [
+      {repo, args}
       # Starts a worker by calling: ExCatalog.Worker.start_link(arg)
       # {ExCatalog.Worker, arg}
     ]

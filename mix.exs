@@ -52,8 +52,12 @@ defmodule ExCatalog.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:credo, "~> 0.9.1", only: [:dev, :test], runtime: false},
+      {:inch_ex, ">= 0.0.0", only: :docs},
+      {:postgrex, ">= 0.0.0"},
+      {:ecto, "~> 3.5"},
+      {:ecto_sql, "~> 3.5"},
     ]
   end
 end
