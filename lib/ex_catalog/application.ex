@@ -5,9 +5,11 @@ defmodule ExCatalog.Application do
 
   use Application
 
+  alias ExCatalog.Config
+
   @impl true
   def start(_type, args) do
-    [repo] = Application.get_env(:ex_catalog, :ecto_repos)
+    repo = Config.repo
 
     children = [
       {repo, args}
