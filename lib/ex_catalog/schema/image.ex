@@ -2,7 +2,7 @@ defmodule ExCatalog.Image do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "images" do
+  schema "product_images" do
     field(:title, :string)
     field(:description, :string)
     field(:path, :string)

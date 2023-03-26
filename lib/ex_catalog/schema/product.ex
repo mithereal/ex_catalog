@@ -2,7 +2,7 @@ defmodule ExCatalog.Product do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "product" do
+  schema "products" do
     field(:sku, :string)
     field(:price, Money.Ecto.Composite.Type)
     field(:title, :string)

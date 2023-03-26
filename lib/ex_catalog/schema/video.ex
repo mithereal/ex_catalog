@@ -2,7 +2,7 @@ defmodule ExCatalog.Video do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "product_variation" do
+  schema "product_videos" do
     field(:path, :string)
     belongs_to(:product, ExCatalog.Product)
   end

@@ -2,7 +2,7 @@ defmodule ExCatalog.Meta do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "meta" do
+  schema "product_metas" do
     field(:key, :string)
     field(:data, :string)
     belongs_to(:product, ExCatalog.Product)
