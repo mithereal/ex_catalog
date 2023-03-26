@@ -2,7 +2,7 @@ defmodule ExCatalog.Product.Variation do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "product_variations" do
+  schema "catalog_variations" do
     belongs_to(:parent, ExCatalog.Product)
     belongs_to(:product, ExCatalog.Product)
   end
