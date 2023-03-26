@@ -20,7 +20,7 @@ defmodule ExCatalog do
 
   ## Examples
 
-      iex> ExCatalog.all(25)
+      iex> ExCatalog.list_products(25)
 
 
   """
