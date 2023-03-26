@@ -1,7 +1,19 @@
 defmodule ExCatalog.Product do
-  defstruct id: nil,
-            sku: nil,
-            price: 0,
-            name: nil,
-            description: nil
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "product" do
+    field(:sku,  :string)
+    field(:price, Money.Ecto.Composite.Type)
+    field(:title, :string)
+    field(:description, :string)
+  end
+
+  @doc false
+  def changeset(image, attrs) do
+    image
+    |> cast(attrs, [:sku, :price, :title, :description])
+    |> validate_required([:sku, :price, :title, :description])
+  end
 end
+

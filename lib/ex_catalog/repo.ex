@@ -46,8 +46,4 @@ defmodule ExCatalog.Repo.Null do
   def init(init_arg) do
     {:ok, init_arg}
   end
-
-  def get_by(_, value, :sku) do
-    %Product{sku: value}
-  end
 end
