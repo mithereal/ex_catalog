@@ -29,6 +29,14 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/makeup_erlang" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/nimble_parsec" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/earmark_parser" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/digital_token" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ex_cldr" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/cldr_utils" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/jason" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ex_cldr_currencies" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ex_cldr_numbers" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ex_money" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ex_money_sql" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="ex_doc" level="project" />
@@ -69,5 +77,13 @@
     <orderEntry type="library" name="junit_formatter" level="project" />
     <orderEntry type="library" name="stream_data" level="project" />
     <orderEntry type="library" name="tiny" level="project" />
+    <orderEntry type="library" name="ex_money" level="project" />
+    <orderEntry type="library" name="ex_money_sql" level="project" />
+    <orderEntry type="library" name="exprof" level="project" />
+    <orderEntry type="library" name="earmark" level="project" />
+    <orderEntry type="library" name="paginator" level="project" />
+    <orderEntry type="library" name="calendar" level="project" />
+    <orderEntry type="library" name="ex_machina" level="project" />
+    <orderEntry type="library" name="plug_crypto" level="project" />
   </component>
 </module>

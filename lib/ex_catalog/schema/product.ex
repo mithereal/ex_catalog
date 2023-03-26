@@ -8,6 +8,7 @@ defmodule ExCatalog.Product do
     field(:title, :string)
     field(:sub_title, :string)
     field(:description, :string)
+    belongs_to(:primary_image, ExCatalog.Image)
   end
 
   @doc false

@@ -10,6 +10,7 @@ defmodule ExCatalog.Repo.Migrations.AddProductsTable do
       add(:price, Money.Ecto.Composite.Type)
 
       add :image_id, references(:images, on_delete: :nothing)
+      add :primary_image_id, references(:images, on_delete: :nothing)
     end
 
     alter table(:metas) do
