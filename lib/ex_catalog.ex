@@ -2,7 +2,7 @@ defmodule ExCatalog do
   @moduledoc """
   Documentation for `ExCatalog`.
   """
- repo = ExCatalog.Config.repo()
+ @repo ExCatalog.Config.repo()
 
   @doc """
   List version.
