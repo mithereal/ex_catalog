@@ -24,7 +24,7 @@ defmodule ExCatalog do
 
 
   """
-  def all(limit \\ 50) do
+  def list_products(limit \\ 50) do
     import Ecto.Query
 
     variations_query = from v in ExCatalog.Product.Variation,
