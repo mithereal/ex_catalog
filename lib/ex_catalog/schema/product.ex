@@ -9,6 +9,8 @@ defmodule ExCatalog.Product do
     field(:sub_title, :string)
     field(:description, :string)
     belongs_to(:primary_image, ExCatalog.Image)
+
+    timestamps()
   end
 
   @doc false

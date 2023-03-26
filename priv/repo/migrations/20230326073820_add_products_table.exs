@@ -9,6 +9,8 @@ defmodule ExCatalog.Repo.Migrations.AddProductsTable do
       add(:sku, :string)
       add(:price, Money.Ecto.Composite.Type)
 
+      timestamps()
+
       add :image_id, references(:catalog_images, on_delete: :nothing)
       add :primary_image_id, references(:catalog_images, on_delete: :nothing)
     end
