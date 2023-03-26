@@ -59,7 +59,8 @@ defmodule ExCatalog.MixProject do
       {:ecto, "~> 3.5"},
       {:ecto_sql, "~> 3.5"},
       {:ex_money, "~> 5.12"},
-      {:ex_money_sql, "~> 1.8"}
+      {:ex_money_sql, "~> 1.8"},
+      {:paginator, "~> 1.2.0"}
     ]
   end
 end

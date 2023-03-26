@@ -3,6 +3,8 @@ defmodule ExCatalog.Repo do
     otp_app: :ex_catalog,
     adapter: Ecto.Adapters.Postgres
 
+  use Paginator
+
   @doc """
   Dynamically loads the repository url from the
   DATABASE_URL environment variable.
