@@ -9,7 +9,7 @@ defmodule ExCatalog.Application do
 
   @impl true
   def start(_type, args) do
-    repo = Config.repo
+    repo = Config.repo()
 
     children = [
       {repo, args}

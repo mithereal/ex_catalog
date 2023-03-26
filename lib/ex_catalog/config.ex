@@ -5,7 +5,6 @@ defmodule ExCatalog.Config do
 
   alias ExCatalog.InvalidConfigError
 
-
   def get(name, default \\ nil) do
     Application.get_env(:ex_catalog, name, default)
   end

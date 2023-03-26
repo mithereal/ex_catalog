@@ -31,6 +31,4 @@ import Config
 
 config :ex_catalog, :ecto_repos, [ExCatalog.Repo]
 
-
-
 import_config "#{Mix.env()}.exs"

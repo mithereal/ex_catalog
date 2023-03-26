@@ -28,8 +28,6 @@ end
 defmodule ExCatalog.Repo.Null do
   use GenServer
 
-  alias ExCatalog.Product
-
   def child_spec(init) do
     %{
       id: __MODULE__,

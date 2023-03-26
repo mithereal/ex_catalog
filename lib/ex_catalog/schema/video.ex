@@ -14,4 +14,3 @@ defmodule ExCatalog.Video do
     |> validate_required([:path, :product])
   end
 end
-

@@ -3,7 +3,7 @@ defmodule ExCatalog.Product.Category do
   import Ecto.Changeset
 
   schema "product_categories" do
-    belongs_to(:category,  ExCatalog.Category)
+    belongs_to(:category, ExCatalog.Category)
     belongs_to(:product, ExCatalog.Product)
   end
 
