@@ -2,7 +2,7 @@
 
 ** A General E-commerce Catalog System **
 
-Think of this like an old school paper mail in catalog, we dont need all the fluff (extra db tables etc) as in in most ecommerce implementations, this is just a catalog, decoupled from inventory management.
+Think of this like an old school paper mail in catalog, we dont need all the fluff (extra db tables etc) as in in most ecommerce implementations, this is just a catalog, decoupled from inventory management with some options such as csv and pdf export
 
 ## Installation
 

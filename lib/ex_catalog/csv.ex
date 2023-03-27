@@ -24,7 +24,7 @@ defmodule ExCatalog.Csv do
         end)
 
         total_products = meta.total_count - limit
-        pages_left = total_products / limit |> trunc()
+        pages_left = (total_products / limit) |> trunc()
 
         Enum.reduce(pages_left, meta, fn _x ->
           {data, meta} = ExCatalog.products(limit, meta, :after)
@@ -63,7 +63,7 @@ defmodule ExCatalog.Csv do
         end)
 
         total_categories = meta.total_count - limit
-        pages_left = total_categories / limit |> trunc()
+        pages_left = (total_categories / limit) |> trunc()
 
         Enum.reduce(pages_left, meta, fn _x ->
           {data, meta} = ExCatalog.index(limit, meta, :after)
