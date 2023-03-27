@@ -111,7 +111,9 @@ defmodule ExCatalog.Pdf do
 
   ## Examples
 
-      iex> ExCatalog.export()
+      iex> categories_template = ExCatalog.Pdf.Template.Category
+      iex> products_template = ExCatalog.Pdf.Template.Product
+      iex> ExCatalog.export({categories_template,products_template})
 
   """
 
