@@ -14,7 +14,8 @@ defmodule ExCatalog.MixProject do
       package: package(),
       description: description(),
       deps: deps(),
-      docs: docs()
+      docs: docs(),
+      aliases: aliases()
     ]
   end
 
@@ -63,6 +64,22 @@ defmodule ExCatalog.MixProject do
       {:paginator, "~> 1.2.0"},
       {:csv, "~> 3.0", optional: true},
       {:chromic_pdf, "~> 1.7", optional: true}
+    ]
+  end
+
+  defp aliases do
+    [
+      c: "compile",
+      test: [
+        "ecto.drop --quiet",
+        "ecto.create --quiet",
+        "ecto.migrate --quiet",
+        "run priv/seeds.exs",
+        "test"
+      ],
+      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/seeds.exs"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      install: ["ExCatalog.install", "ecto.setup"]
     ]
   end
 end
