@@ -8,8 +8,8 @@ defmodule ExCatalog.Video do
   end
 
   @doc false
-  def changeset(image, attrs) do
-    image
+  def changeset(schema, attrs) do
+    schema
     |> cast(attrs, [:path, :product])
     |> validate_required([:path, :product])
   end

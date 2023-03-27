@@ -9,8 +9,8 @@ defmodule ExCatalog.Meta do
   end
 
   @doc false
-  def changeset(image, attrs) do
-    image
+  def changeset(schema, attrs) do
+    schema
     |> cast(attrs, [:key, :data])
     |> validate_required([:key, :data])
   end

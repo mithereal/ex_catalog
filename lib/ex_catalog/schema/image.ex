@@ -12,8 +12,8 @@ defmodule ExCatalog.Image do
   end
 
   @doc false
-  def changeset(image, attrs) do
-    image
+  def changeset(schema, attrs) do
+    schema
     |> cast(attrs, [:path, :description, :width, :height])
     |> validate_required([:path, :name, :width, :height])
   end

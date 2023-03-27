@@ -21,8 +21,8 @@ defmodule ExCatalog.Product do
   end
 
   @doc false
-  def changeset(image, attrs) do
-    image
+  def changeset(schema, attrs) do
+    schema
     |> cast(attrs, [:sku, :price, :title, :sub_title, :description])
     |> validate_required([:sku, :price, :title, :sub_title, :description])
   end
