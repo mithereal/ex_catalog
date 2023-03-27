@@ -39,6 +39,9 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ex_money_sql" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug_crypto" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/paginator" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/csv" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/chromic_pdf" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/nimble_pool" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="ex_doc" level="project" />
@@ -87,5 +90,17 @@
     <orderEntry type="library" name="calendar" level="project" />
     <orderEntry type="library" name="ex_machina" level="project" />
     <orderEntry type="library" name="plug_crypto" level="project" />
+    <orderEntry type="library" name="csv" level="project" />
+    <orderEntry type="library" name="benchfella" level="project" />
+    <orderEntry type="library" name="eflame" level="project" />
+    <orderEntry type="library" name="nimble_csv" level="project" />
+    <orderEntry type="library" name="pdf" level="project" />
+    <orderEntry type="library" name="chromic_pdf" level="project" />
+    <orderEntry type="library" name="nimble_pool" level="project" />
+    <orderEntry type="library" name="mox" level="project" />
+    <orderEntry type="library" name="phoenix" level="project" />
+    <orderEntry type="library" name="phoenix_html" level="project" />
+    <orderEntry type="library" name="plug" level="project" />
+    <orderEntry type="library" name="bandit" level="project" />
   </component>
 </module>
