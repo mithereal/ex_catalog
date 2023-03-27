@@ -31,19 +31,6 @@ Add the following to your config.exs
 ```elixir
 config :ex_catalog, :ecto_repos, [ExCatalog.Repo]
 
-config :ex_money,
-  exchange_rates_retrieve_every: 300_000,
-  api_module: Money.ExchangeRates.OpenExchangeRates,
-  callback_module: Money.ExchangeRates.Callback,
-  exchange_rates_cache_module: Money.ExchangeRates.Cache.Ets,
-  preload_historic_rates: nil,
-  retriever_options: nil,
-  log_failure: :warn,
-  log_info: :info,
-  log_success: nil,
-  json_library: Jason,
-  default_cldr_backend: ExCatalog.Cldr
-
 config :ex_cldr,
   json_library: Jason
 ```
@@ -66,8 +53,21 @@ config :ex_catalog, ExCatalog.Repo,
 mix ExCatalog.install
 ```
 
-## (Optional) startup config options
+## (Optional) startup config options for using currency autoloader etc
 ```elixir
+config :ex_money,
+  exchange_rates_retrieve_every: 300_000,
+  api_module: Money.ExchangeRates.OpenExchangeRates,
+  callback_module: Money.ExchangeRates.Callback,
+  exchange_rates_cache_module: Money.ExchangeRates.Cache.Ets,
+  preload_historic_rates: nil,
+  retriever_options: nil,
+  log_failure: :warn,
+  log_info: :info,
+  log_success: nil,
+  json_library: Jason,
+  default_cldr_backend: ExCatalog.Cldr
+  
 config :ex_catalog, :autoload_exchange_rates, true 
 ```
 

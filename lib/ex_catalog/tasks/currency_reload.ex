@@ -4,7 +4,7 @@ defmodule ExCatalog.Currency.Reload do
 
   @moduledoc false
 
-  def start_link(data \\ []) do
+  def start_link(_data \\ []) do
     Logger.info("Currencies will be reloaded every 300 seconds.")
     Task.start_link(&poll/0)
   end

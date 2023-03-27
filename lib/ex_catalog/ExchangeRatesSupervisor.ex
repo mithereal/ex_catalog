@@ -1,8 +1,6 @@
 defmodule ExCatalog.ExchangeRates.Supervisor do
   use DynamicSupervisor
 
-  @name __MODULE__
-
   def child_spec(args) do
     %{
       id: __MODULE__,
