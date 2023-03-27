@@ -37,7 +37,7 @@ defmodule ExCatalog.MixProject do
       name: :ex_catalog,
       files: ["lib", "mix.exs", "README*"],
       maintainers: ["Jason Clark"],
-      licenses: ["Apache 2.0"],
+      licenses: ["Apache-2.0"],
       links: %{"GitHub" => "https://github.com/mithereal/ex_catalog"}
     ]
   end
