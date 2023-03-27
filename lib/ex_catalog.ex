@@ -69,11 +69,15 @@ defmodule ExCatalog do
   ## Examples
 
       iex> ExCatalog.products(25)
-      iex> ExCatalog.products(25, nil, nil, :USD)
+      iex> ExCatalog.products(25,:USD)
 
 
   """
-  def products(limit \\ 50, metadata \\ nil, cursor \\ nil, currency \\ nil) do
+  def products(limit \\ 50, currency \\ :USD) do
+    products(limit, nil, nil, currency)
+  end
+
+  def products(limit \\ 50, metadata, cursor, currency) do
     import Ecto.Query
 
     query =
@@ -153,7 +157,7 @@ defmodule ExCatalog do
         preload: [:videos]
       )
 
-    [reply] = Repo.all(query)
+    [reply] = @repo.all(query)
 
     case currency do
       nil ->
