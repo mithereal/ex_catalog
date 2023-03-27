@@ -5,8 +5,9 @@ defmodule ExCatalog.Category do
   schema "catalog_categories" do
     field(:title, :string)
     field(:description, :string)
-    belongs_to(:parent_category, ExCatalog.Category)
     field(:sort_order, :string)
+
+    belongs_to(:parent_category, ExCatalog.Category)
     belongs_to(:image, ExCatalog.Image)
   end
 
