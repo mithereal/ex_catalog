@@ -1,7 +1,7 @@
 defmodule Mix.Tasks.ExCatalog.Install do
   @moduledoc """
     After configuring your default ecto repo in `:ecto_repos`
-    Run mix SoftBank.install to generates a `setup_softbank_tables` migration,
+    Run mix ExCatalog.install to generates a `setup_ExCatalog_tables` migration,
     which creates your accounts, entries, and amounts tables, as well as
     required indexes.
   """

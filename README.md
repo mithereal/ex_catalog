@@ -17,6 +17,60 @@ def deps do
 end
 ```
 
+## Creating the Database Tables
+
+The Database Tables can be created by running the mix alias.
+
+```elixir
+mix install
+```
+
+## Config
+
+Add the following to your config.exs
+```elixir
+config :ex_catalog, :ecto_repos, [ExCatalog.Repo]
+
+config :ex_money,
+  exchange_rates_retrieve_every: 300_000,
+  api_module: Money.ExchangeRates.OpenExchangeRates,
+  callback_module: Money.ExchangeRates.Callback,
+  exchange_rates_cache_module: Money.ExchangeRates.Cache.Ets,
+  preload_historic_rates: nil,
+  retriever_options: nil,
+  log_failure: :warn,
+  log_info: :info,
+  log_success: nil,
+  json_library: Jason,
+  default_cldr_backend: ExCatalog.Cldr
+
+config :ex_cldr,
+  json_library: Jason
+```
+
+Add the following to your dev and/or prod config
+```elixir
+config :ex_catalog, :ecto_repos, [ExCatalog.Repo]
+
+config :ex_catalog, ExCatalog.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "ex_catalog_dev",
+  hostname: "localhost",
+  pool_size: 10
+```
+
+## Generate a migration
+```elixir
+mix ExCatalog.install
+```
+
+## (Optional) startup config options
+```elixir
+config :ex_catalog, :autoload_exchange_rates, true 
+```
+
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/ex_catalog>.

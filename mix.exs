@@ -1,7 +1,7 @@
 defmodule ExCatalog.MixProject do
   use Mix.Project
 
-  @version "1.1.1"
+  @version "1.5.0"
   @source_url "https://github.com/mithereal/ExCatalog"
 
   def project do
@@ -34,7 +34,7 @@ defmodule ExCatalog.MixProject do
   defp package do
     # These are the default files included in the package
     [
-      name: :ex_checkout,
+      name: :ex_catalog,
       files: ["lib", "mix.exs", "README*"],
       maintainers: ["Jason Clark"],
       licenses: ["Apache 2.0"],
