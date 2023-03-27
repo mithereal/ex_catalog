@@ -48,11 +48,11 @@ defmodule ExCatalog.Repo.Null do
     {:ok, init_arg}
   end
 
-  def all(_,_) do
-  []
+  def all(_, _) do
+    []
   end
 
-  def one(_,_) do
-  []
+  def one(_, _) do
+    []
   end
 end
