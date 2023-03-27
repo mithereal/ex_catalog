@@ -144,7 +144,7 @@ defmodule ExCatalog do
 
     query =
       from(ExCatalog.Product,
-        where: [sku: sku],
+        where: [sku: ^sku],
         preload: [:variations],
         preload: [:categories],
         preload: [:metas],
