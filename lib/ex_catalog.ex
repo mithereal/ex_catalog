@@ -2,7 +2,7 @@ defmodule ExCatalog do
   @moduledoc """
   Documentation for `ExCatalog`.
   """
- @repo ExCatalog.Config.repo()
+  @repo ExCatalog.Config.repo()
 
   @doc """
   List version.
@@ -25,7 +25,7 @@ defmodule ExCatalog do
 
 
   """
-  def index(limit \\ 25) do
+  def index(limit \\ 25, metadata \\ nil, cursor \\ nil) do
     import Ecto.Query
 
     query =
@@ -34,12 +34,33 @@ defmodule ExCatalog do
         preload: [:image]
       )
 
-    @repo.paginate(
-      query,
-      include_total_count: true,
-      cursor_fields: [:inserted_at, :id],
-      limit: limit
-    )
+    case cursor do
+      :before ->
+        @repo.paginate(
+          query,
+          before: metadata.before,
+          include_total_count: true,
+          cursor_fields: [:inserted_at, :id],
+          limit: limit
+        )
+
+      :after ->
+        @repo.paginate(
+          query,
+          after: metadata.after,
+          include_total_count: true,
+          cursor_fields: [:inserted_at, :id],
+          limit: limit
+        )
+
+      _ ->
+        @repo.paginate(
+          query,
+          include_total_count: true,
+          cursor_fields: [:inserted_at, :id],
+          limit: limit
+        )
+    end
   end
 
   @doc """
@@ -51,9 +72,8 @@ defmodule ExCatalog do
 
 
   """
-  def products(limit \\ 50) do
+  def products(limit \\ 50, metadata \\ nil, cursor \\ nil) do
     import Ecto.Query
-
 
     query =
       from(ExCatalog.Product,
@@ -65,11 +85,32 @@ defmodule ExCatalog do
         preload: [:videos]
       )
 
-    @repo.paginate(
-      query,
-      include_total_count: true,
-      cursor_fields: [:inserted_at, :id],
-      limit: limit
-    )
+    case cursor do
+      :before ->
+        @repo.paginate(
+          query,
+          before: metadata.before,
+          include_total_count: true,
+          cursor_fields: [:inserted_at, :id],
+          limit: limit
+        )
+
+      :after ->
+        @repo.paginate(
+          query,
+          after: metadata.after,
+          include_total_count: true,
+          cursor_fields: [:inserted_at, :id],
+          limit: limit
+        )
+
+      _ ->
+        @repo.paginate(
+          query,
+          include_total_count: true,
+          cursor_fields: [:inserted_at, :id],
+          limit: limit
+        )
+    end
   end
 end
