@@ -12,7 +12,7 @@ defmodule Mix.Tasks.ExCatalog.Install do
     files = ExCatalog.Util.list_all(dir)
 
     for file <- files do
-      [h | t] = String.split(file, "/") |> List.last() |> String.split("_")
+      [_ | t] = String.split(file, "/") |> List.last() |> String.split("_")
       filename = (["/priv/repo/migrations/#{timestamp()}"] ++ t) |> Enum.join("_")
       target = Path.join(File.cwd!(), filename)
 

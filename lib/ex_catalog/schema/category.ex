@@ -12,7 +12,6 @@ defmodule ExCatalog.Category do
   end
 
   def changeset(schema, attrs) do
-    changeset =
       schema
       |> cast(attrs, [:title, :description, :parent_category, :sort_order, :image])
   end
