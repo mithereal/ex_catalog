@@ -47,4 +47,12 @@ defmodule ExCatalog.Repo.Null do
   def init(init_arg) do
     {:ok, init_arg}
   end
+
+  def all(_,_) do
+  []
+  end
+
+  def one(_,_) do
+  []
+  end
 end
