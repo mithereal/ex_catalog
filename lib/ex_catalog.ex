@@ -29,7 +29,7 @@ defmodule ExCatalog do
     import Ecto.Query
 
     query =
-      from(pc in ExCatalog.Category,
+      from(ExCatalog.Category,
         preload: [:parent_category],
         preload: [:image]
       )
@@ -56,7 +56,7 @@ defmodule ExCatalog do
 
 
     query =
-      from(p in ExCatalog.Product,
+      from(ExCatalog.Product,
         preload: [:variations],
         preload: [:categories],
         preload: [:metas],
