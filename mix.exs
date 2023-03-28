@@ -74,7 +74,6 @@ defmodule ExCatalog.MixProject do
         "ecto.drop --quiet",
         "ecto.create --quiet",
         "ecto.migrate --quiet",
-        "run priv/seeds.exs",
         "test"
       ],
       "ecto.setup": ["ecto.create", "ecto.migrate"],
