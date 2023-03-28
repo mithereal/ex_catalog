@@ -2,7 +2,7 @@ defmodule ExCatalog.Repo.Migrations.AddVariationsTable do
   use Ecto.Migration
 
   def change do
-    key_type = Application.get_env(:ex_catalog, :key_type, :integer)
+    key_type = ExCatalog.Config.key_type()
 
     create table(:catalog_product_variations, primary_key: false) do
       add(:id, key_type, primary_key: true)

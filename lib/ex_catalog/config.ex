@@ -27,4 +27,8 @@ defmodule ExCatalog.Config do
         config
     end
   end
+
+  def key_type() do
+    Application.get_env(:ex_catalog, repo())[:key_type] || :integer
+  end
 end

@@ -15,6 +15,8 @@ config :ex_money,
   json_library: Jason,
   default_cldr_backend: ExCatalog.Cldr
 
+config :ex_catalog, :ecto_repos, [ExCatalog.Repo]
+
  config :ex_catalog, ExCatalog.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",

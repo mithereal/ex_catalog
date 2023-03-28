@@ -45,7 +45,8 @@ config :ex_catalog, ExCatalog.Repo,
   password: "postgres",
   database: "ex_catalog_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 10,
+  key_type: :uuid ## optional
 ```
 
 ## Generate a migration
@@ -69,7 +70,6 @@ config :ex_money,
   default_cldr_backend: ExCatalog.Cldr
   
 config :ex_catalog, :autoload_exchange_rates, true 
-config :ex_catalog, :key_type, :integer || :uuid
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)

@@ -1,5 +1,5 @@
 defmodule ExCatalog.Category do
-  use ExCatalog.Schema, type: Application.get_env(:ex_catalog, :key_type, :integer)
+  use ExCatalog.Schema, type: ExCatalog.Config.key_type()
   use EctoAutoslugField.Slug, from: :title, to: :slug
   use ExCatalog.AutoSlug
   import Ecto.Changeset
