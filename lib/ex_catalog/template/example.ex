@@ -1,5 +1,7 @@
 defmodule ExCatalog.Template.Example do
-  @moduledoc false
+  @moduledoc """
+  An Example of a Html Template to be sent to the PDF Creator
+  """
 
   @behaviour ExCatalog.Pdf.Template
 
