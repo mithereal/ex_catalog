@@ -13,18 +13,16 @@ defmodule ExCatalog.Product do
 
     many_to_many(:variations, ExCatalog.Product,
       join_through: ExCatalog.Product.Variation,
-      on_replace: :delete,
-      type: ExCatalog.Config.key_type()
+      on_replace: :delete
     )
 
     many_to_many(:categories, ExCatalog.Category,
       join_through: ExCatalog.Product.Category,
-      on_replace: :delete,
-      type: ExCatalog.Config.key_type()
+      on_replace: :delete
     )
 
-    has_many(:images, ExCatalog.Image, on_replace: :delete, type: ExCatalog.Config.key_type())
-    has_many(:metas, ExCatalog.Meta, on_replace: :delete, type: ExCatalog.Config.key_type())
+    has_many(:images, ExCatalog.Image, on_replace: :delete)
+    has_many(:metas, ExCatalog.Meta, on_replace: :delete)
 
     timestamps()
   end
