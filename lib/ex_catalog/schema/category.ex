@@ -19,8 +19,23 @@ defmodule ExCatalog.Category do
 
   def changeset(schema, attrs) do
     schema
-    |> cast(attrs, [:title, :description, :parent_category, :sort_order, :image])
+    |> cast(attrs, [
+      :title,
+      :description,
+      :image,
+      :sort_order,
+      :parent_category_id,
+      :image_id
+    ])
     |> TitleSlug.maybe_generate_slug()
     |> TitleSlug.unique_constraint()
+  end
+
+  @doc false
+  def changeset_assoc(schema, attrs) do
+    schema
+    |> changeset(attrs)
+    |> put_assoc(:parent_category, ExCatalog.Category)
+    |> put_assoc(:image, ExCatalog.Image)
   end
 end

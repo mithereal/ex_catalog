@@ -14,7 +14,14 @@ defmodule ExCatalog.Image do
   @doc false
   def changeset(schema, attrs) do
     schema
-    |> cast(attrs, [:path, :description, :width, :height])
+    |> cast(attrs, [:path, :description, :width, :height, :product_id])
     |> validate_required([:path, :name, :width, :height])
+  end
+
+  @doc false
+  def changeset_assoc(schema, attrs) do
+    schema
+    |> changeset(attrs)
+    |> put_assoc(:product, ExCatalog.Product)
   end
 end

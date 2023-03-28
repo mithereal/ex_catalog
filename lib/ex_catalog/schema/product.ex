@@ -33,4 +33,11 @@ defmodule ExCatalog.Product do
     |> cast(attrs, [:sku, :price, :title, :sub_title, :description, :primary_image_id])
     |> validate_required([:sku, :price, :title, :sub_title, :description])
   end
+
+  @doc false
+  def changeset_assoc(schema, attrs) do
+    schema
+    |> changeset(attrs)
+    |> put_assoc(:primary_image, ExCatalog.Image)
+  end
 end

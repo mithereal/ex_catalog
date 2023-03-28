@@ -10,7 +10,14 @@ defmodule ExCatalog.Video do
   @doc false
   def changeset(schema, attrs) do
     schema
-    |> cast(attrs, [:path, :product])
-    |> validate_required([:path, :product])
+    |> cast(attrs, [:path, :product_id])
+    |> validate_required([:path])
+  end
+
+  @doc false
+  def changeset_assoc(schema, attrs) do
+    schema
+    |> changeset(attrs)
+    |> put_assoc(:product, ExCatalog.Product)
   end
 end
