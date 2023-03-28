@@ -6,7 +6,7 @@ defmodule ExCatalog.Template.Category do
   @behaviour ExCatalog.Pdf.Template
 
   @impl true
-  def render(%{categories: categories} = args) do
+  def render(%{categories: _categories} = args) do
     EEx.eval_string(html(), args) |> slot()
   end
 
@@ -15,6 +15,6 @@ defmodule ExCatalog.Template.Category do
   end
 
   defp slot(inner) do
-    "<div><span><%= inner %></span></div>"
+    "<div><span>#{inner}</span></div>"
   end
 end

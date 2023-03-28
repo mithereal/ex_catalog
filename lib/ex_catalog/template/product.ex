@@ -6,7 +6,7 @@ defmodule ExCatalog.Template.Product do
   @behaviour ExCatalog.Pdf.Template
 
   @impl true
-  def render(%{product: product} = args) do
+  def render(%{product: _product} = args) do
     EEx.eval_string(html(), args)
   end
 
