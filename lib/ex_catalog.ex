@@ -126,13 +126,15 @@ defmodule ExCatalog do
         reply
 
       _ ->
-        {p, m} = reply
+        {p, metadata} = reply
 
         modified =
           Enum.map(p, fn x ->
-            {:ok, price} = ExCatalog.Currencies.convert(p.price, currency)
-            %{p | price: price}
+            {:ok, price} = ExCatalog.Currencies.convert(x.price, currency)
+            %{x | price: price}
           end)
+
+        {modified, metadata}
     end
   end
 
@@ -141,11 +143,11 @@ defmodule ExCatalog do
 
   ## Examples
 
-      iex> ExCatalog.get("2242", :USD)
+      iex> ExCatalog.product("2242", :USD)
 
 
   """
-  def get(sku, currency \\ nil) do
+  def product(sku, currency \\ nil) do
     import Ecto.Query
 
     query =
@@ -234,13 +236,15 @@ defmodule ExCatalog do
         reply
 
       _ ->
-        {p, m} = reply
+        {p, metadata} = reply
 
         modified =
           Enum.map(p, fn x ->
-            {:ok, price} = ExCatalog.Currencies.convert(p.price, currency)
-            %{p | price: price}
+            {:ok, price} = ExCatalog.Currencies.convert(x.price, currency)
+            %{x | price: price}
           end)
+
+        {modified, metadata}
     end
   end
 end

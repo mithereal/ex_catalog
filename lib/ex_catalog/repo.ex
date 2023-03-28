@@ -56,6 +56,14 @@ defmodule ExCatalog.Repo.Null do
     []
   end
 
+  def get_by(_, _) do
+    []
+  end
+
+  def get_by!(_, _) do
+    []
+  end
+
   def one(_, _) do
     []
   end
