@@ -3,6 +3,7 @@ defmodule ExCatalog.Template.Example do
 
   @behaviour ExCatalog.Pdf.Template
 
+  @impl true
   def render(%{bar: "bar"} = args) do
     EEx.eval_string(html(), args)
   end
