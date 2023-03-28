@@ -17,7 +17,7 @@ config :ex_money,
 
 config :ex_catalog, :ecto_repos, [ExCatalog.Repo]
 
- config :ex_catalog, ExCatalog.Repo,
+config :ex_catalog, ExCatalog.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
