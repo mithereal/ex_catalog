@@ -46,7 +46,7 @@ config :ex_catalog, ExCatalog.Repo,
   database: "ex_catalog_dev",
   hostname: "localhost",
   pool_size: 10,
-  key_type: :uuid ## optional
+  primary_key_type: :uuid ## optional
 ```
 
 ## Generate a migration
