@@ -1,4 +1,5 @@
 defmodule ExCatalog.Product.Variation do
+  @moduledoc false
   use Ecto.Schema
 
   schema "catalog_product_variations" do

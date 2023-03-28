@@ -1,4 +1,5 @@
 defmodule ExCatalog.InvalidConfigError do
+  @moduledoc false
   defexception [:message]
 
   def exception(message) do

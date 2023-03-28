@@ -1,4 +1,5 @@
 defmodule ExCatalog.Product.Category do
+  @moduledoc false
   use Ecto.Schema
 
   schema "catalog_product_categories" do

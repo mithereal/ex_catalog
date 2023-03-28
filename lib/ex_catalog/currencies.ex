@@ -1,4 +1,5 @@
 defmodule ExCatalog.Currencies do
+  @moduledoc false
   alias ExCatalog.Currency
   alias ExCatalog.Repo
   alias ExCatalog.Config
@@ -6,7 +7,6 @@ defmodule ExCatalog.Currencies do
   require Logger
 
   def init(_pid, _table) do
-    #  Config.repo().all(Currency)
     currencies = []
 
     Enum.map(currencies, fn x ->

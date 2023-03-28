@@ -1,4 +1,5 @@
 defmodule ExCatalog.Schema do
+  @moduledoc false
   defmacro __using__(type) do
     case type do
       :binary_id ->

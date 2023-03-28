@@ -1,6 +1,6 @@
 defmodule ExCatalog.Pdf do
   @moduledoc """
-  csv functions.
+  pdf functions.
   """
   require Logger
 
