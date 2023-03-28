@@ -36,11 +36,13 @@ defmodule ExCatalog.Pdf do
         Enum.reduce(pages_left, {meta, page}, fn _x ->
           {data, meta} = ExCatalog.products(limit, meta, :after)
 
-          html =
+          rendered =
             Enum.map(data, fn p ->
-              rendered = template.render(p)
-              {:html, rendered}
+              template.render(p)
             end)
+            |> Enum.join(" ")
+
+          html = {:html, rendered}
 
           [h | _] = String.split(filename, ".")
           pdf_filename = "#{h}-#{page}-#{limit}.pdf"
@@ -69,11 +71,13 @@ defmodule ExCatalog.Pdf do
       true ->
         {data, meta} = ExCatalog.index(limit)
 
-        html =
+        rendered =
           Enum.map(data, fn p ->
-            rendered = template.render(p)
-            {:html, rendered}
+            template.render(p)
           end)
+          |> Enum.join(" ")
+
+        html = {:html, rendered}
 
         page = 1
 
