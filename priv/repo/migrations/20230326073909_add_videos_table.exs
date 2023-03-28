@@ -8,7 +8,7 @@ defmodule ExCatalog.Repo.Migrations.AddVideosTable do
       add(:id, key_type, primary_key: true)
       add(:path, :string)
 
-      add(:product_id, references(:catalog_products, on_delete: :nothing))
+      add(:product_id, references(:catalog_products, on_delete: :nothing, type: key_type))
     end
   end
 end

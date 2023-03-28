@@ -14,12 +14,12 @@ defmodule ExCatalog.Repo.Migrations.AddProductsTable do
 
       timestamps()
 
-      add(:image_id, references(:catalog_images, on_delete: :nothing))
-      add(:primary_image_id, references(:catalog_images, on_delete: :nothing))
+      add(:image_id, references(:catalog_images, on_delete: :nothing, type: key_type))
+      add(:primary_image_id, references(:catalog_images, on_delete: :nothing, type: key_type))
     end
 
     alter table(:catalog_metas) do
-      add(:product_id, references(:catalog_products, on_delete: :nothing))
+      add(:product_id, references(:catalog_products, on_delete: :nothing, type: key_type))
     end
   end
 end

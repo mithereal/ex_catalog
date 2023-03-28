@@ -24,4 +24,5 @@ config :ex_catalog, ExCatalog.Repo,
   database: "ex_catalog",
   hostname: "localhost",
   port: 55432,
-  pool_size: 10
+  pool_size: 10,
+  key_type: :uuid
