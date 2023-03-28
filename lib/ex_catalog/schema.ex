@@ -1,6 +1,8 @@
 defmodule ExCatalog.Schema do
   @moduledoc false
-  defmacro __using__(type) do
+  defmacro __using__(_options) do
+    type = ExCatalog.Config.key_type()
+
     case type do
       :binary_id ->
         quote do

@@ -1,5 +1,5 @@
 defmodule ExCatalog.Category do
-  use ExCatalog.Schema, type: ExCatalog.Config.key_type()
+  use ExCatalog.Schema
   use EctoAutoslugField.Slug, from: :title, to: :slug
   use ExCatalog.AutoSlug
   import Ecto.Changeset
@@ -13,8 +13,8 @@ defmodule ExCatalog.Category do
 
     field(:slug, TitleSlug.Type)
 
-    belongs_to(:parent_category, ExCatalog.Category, type: ExCatalog.Config.key_type())
-    belongs_to(:image, ExCatalog.Image, type: ExCatalog.Config.key_type())
+    belongs_to(:parent_category, ExCatalog.Category)
+    belongs_to(:image, ExCatalog.Image)
   end
 
   def changeset(schema, attrs) do

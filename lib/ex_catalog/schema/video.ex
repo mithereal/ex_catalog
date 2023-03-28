@@ -1,10 +1,10 @@
 defmodule ExCatalog.Video do
-  use ExCatalog.Schema, type: ExCatalog.Config.key_type()
+  use ExCatalog.Schema
   import Ecto.Changeset
 
   schema "catalog_videos" do
     field(:path, :string)
-    belongs_to(:product, ExCatalog.Product, type: ExCatalog.Config.key_type())
+    belongs_to(:product, ExCatalog.Product)
   end
 
   @doc false

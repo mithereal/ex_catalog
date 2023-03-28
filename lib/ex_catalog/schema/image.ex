@@ -1,5 +1,5 @@
 defmodule ExCatalog.Image do
-  use ExCatalog.Schema, type: ExCatalog.Config.key_type()
+  use ExCatalog.Schema
   import Ecto.Changeset
 
   schema "catalog_images" do
@@ -8,7 +8,7 @@ defmodule ExCatalog.Image do
     field(:path, :string)
     field(:height, :float)
     field(:width, :float)
-    belongs_to(:product, ExCatalog.Product, type: ExCatalog.Config.key_type())
+    belongs_to(:product, ExCatalog.Product)
   end
 
   @doc false

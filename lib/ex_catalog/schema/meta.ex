@@ -1,11 +1,11 @@
 defmodule ExCatalog.Meta do
-  use ExCatalog.Schema, type: ExCatalog.Config.key_type()
+  use ExCatalog.Schema
   import Ecto.Changeset
 
   schema "catalog_metas" do
     field(:key, :string)
     field(:data, :string)
-    belongs_to(:product, ExCatalog.Product, type: ExCatalog.Config.key_type())
+    belongs_to(:product, ExCatalog.Product)
   end
 
   @doc false

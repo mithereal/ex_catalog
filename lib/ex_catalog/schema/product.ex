@@ -1,5 +1,5 @@
 defmodule ExCatalog.Product do
-  use ExCatalog.Schema, type: ExCatalog.Config.key_type()
+  use ExCatalog.Schema
   import Ecto.Changeset
 
   @repo ExCatalog.Config.repo()
@@ -11,7 +11,7 @@ defmodule ExCatalog.Product do
     field(:sub_title, :string)
     field(:description, :string)
 
-    belongs_to(:primary_image, ExCatalog.Image, type: ExCatalog.Config.key_type())
+    belongs_to(:primary_image, ExCatalog.Image)
 
     many_to_many(:variations, ExCatalog.Product,
       join_through: ExCatalog.Product.Variation,
@@ -58,13 +58,15 @@ defmodule ExCatalog.Product do
 
   ## Examples
 
-      iex> ExCatalog.new()
+      iex> price = Money.new(:USD, 100)
+      iex> product = %{sku: "12345", price: price, title: "test product", sub_title: "test product", description: "test product"}
+      iex> ExCatalog.Product.new(product)
 
 
   """
-  def new(struct \\ %ExCatalog.Product{}, params \\ %{}) do
+  def new(params \\ %{}, struct \\ %ExCatalog.Product{}) do
     struct
-    |> changeset_assoc(params)
+    |> changeset(params)
     |> @repo.insert()
   end
 end
