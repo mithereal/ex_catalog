@@ -61,6 +61,7 @@ defmodule ExCatalog.MixProject do
       {:ex_money, "~> 5.12"},
       {:ex_money_sql, "~> 1.8"},
       {:paginator, "~> 1.2.0"},
+      {:ecto_autoslug_field, "~> 3.0"},
       {:csv, "~> 3.0", optional: true},
       {:chromic_pdf, "~> 1.7", optional: true}
     ]
