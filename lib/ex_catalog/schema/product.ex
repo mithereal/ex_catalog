@@ -43,6 +43,15 @@ defmodule ExCatalog.Product do
     |> put_assoc(:primary_image, ExCatalog.Image, attrs[:image])
   end
 
+  @doc """
+  Create a New Product
+
+  ## Examples
+
+      iex> ExCatalog.new()
+
+
+  """
   def new(struct \\ %ExCatalog.Product{}, params \\ %{}) do
     struct
     |> changeset_assoc(params)
