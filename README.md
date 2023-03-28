@@ -2,7 +2,7 @@
 
 ** A General E-commerce Catalog System **
 
-Think of this like an old school paper mail in catalog, we dont need all the fluff (extra db tables etc) as in in most ecommerce implementations, this is just a catalog, decoupled from inventory management with some options such as csv and pdf export
+Think of this like an old school paper mail in catalog, we dont need all the fluff (extra db tables etc) as in in most ecommerce implementations, this is just a catalog, decoupled from inventory management with some options such as csv and pdf export, integer or binary primary key.
 
 ## Installation
 
@@ -69,6 +69,7 @@ config :ex_money,
   default_cldr_backend: ExCatalog.Cldr
   
 config :ex_catalog, :autoload_exchange_rates, true 
+config :ex_catalog, :key_type, :integer || :uuid
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)

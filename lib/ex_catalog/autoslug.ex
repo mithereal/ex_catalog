@@ -1,5 +1,5 @@
 defmodule ExCatalog.AutoSlug do
-  defmacro __using__(opts) do
+  defmacro __using__(_opts) do
     quote do
       @repo ExCatalog.Config.repo()
 
@@ -12,6 +12,8 @@ defmodule ExCatalog.AutoSlug do
       end
     end
   end
+
+  @repo ExCatalog.Config.repo()
 
   def get_by_slug(slug, struct \\ %{}) do
     @repo.get_by(struct, slug: slug)

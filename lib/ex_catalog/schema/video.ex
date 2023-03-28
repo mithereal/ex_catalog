@@ -1,5 +1,5 @@
 defmodule ExCatalog.Video do
-  use Ecto.Schema
+  use ExCatalog.Schema, type: Application.get_env(:ex_catalog, :key_type, :integer)
   import Ecto.Changeset
 
   schema "catalog_videos" do

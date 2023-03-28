@@ -1,5 +1,5 @@
 defmodule ExCatalog.Currency do
-  use Ecto.Schema
+  use ExCatalog.Schema, type: Application.get_env(:ex_catalog, :key_type, :integer)
 
   import Ecto.Changeset
 
