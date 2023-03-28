@@ -4,11 +4,11 @@ defmodule ExCatalog.Template.Example do
   @behaviour ExCatalog.Pdf.Template
 
   @impl true
-  def render(%{bar: "bar"} = args) do
+  def render(%{product: product, sku: sku} = args) do
     EEx.eval_string(html(), args)
   end
 
   def html() do
-    "<title>foo <%= bar %></title>"
+    "<div><span><%= product.title %></span><span><%= product.sku %></span></div>"
   end
 end
