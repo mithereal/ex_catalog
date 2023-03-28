@@ -42,6 +42,8 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/csv" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/chromic_pdf" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/nimble_pool" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/slugger" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_autoslug_field" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="ex_doc" level="project" />
@@ -102,5 +104,8 @@
     <orderEntry type="library" name="phoenix_html" level="project" />
     <orderEntry type="library" name="plug" level="project" />
     <orderEntry type="library" name="bandit" level="project" />
+    <orderEntry type="library" name="ecto_autoslug_field" level="project" />
+    <orderEntry type="library" name="slugger" level="project" />
+    <orderEntry type="library" name="inch_ex" level="project" />
   </component>
 </module>

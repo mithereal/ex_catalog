@@ -1,0 +1,20 @@
+version: "3"
+services:
+  database:
+    image: postgres:14-alpine
+    container_name: ex_catalog
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ex_catalog
+    networks:
+      - default
+    ports:
+      - 55432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+
+networks:
+  default:
+volumes:
+  data:

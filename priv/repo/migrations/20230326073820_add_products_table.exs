@@ -10,7 +10,7 @@ defmodule ExCatalog.Repo.Migrations.AddProductsTable do
       add(:sub_title, :string)
       add(:description, :string)
       add(:sku, :string)
-      add(:price, Money.Ecto.Composite.Type)
+      add(:price, :money_with_currency)
 
       timestamps()
 

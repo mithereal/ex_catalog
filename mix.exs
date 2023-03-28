@@ -77,7 +77,7 @@ defmodule ExCatalog.MixProject do
         "run priv/seeds.exs",
         "test"
       ],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/seeds.exs"],
+      "ecto.setup": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       install: ["ExCatalog.install", "ecto.setup"]
     ]

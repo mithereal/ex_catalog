@@ -1,5 +1,6 @@
 defmodule ExCatalog.Repo.Migrations.CurrenciesTable do
   use Ecto.Migration
+  def change do
   key_type = Application.get_env(:ex_catalog, :key_type, :integer)
 
   create table(:catalog_currencies, primary_key: false) do
@@ -20,4 +21,5 @@ defmodule ExCatalog.Repo.Migrations.CurrenciesTable do
   end
 
   create(index(:catalog_currencies, [:symbol]))
+end
 end
