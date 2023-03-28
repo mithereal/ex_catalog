@@ -38,6 +38,7 @@ defmodule ExCatalog.Product do
 
   @doc false
   def changeset_assoc(schema, attrs) do
+    primary_image = attrs[:primary_image] || []
     images = attrs[:images] || []
     categories = attrs[:categories] || []
     metas = attrs[:metas] || []
@@ -45,11 +46,11 @@ defmodule ExCatalog.Product do
 
     schema
     |> changeset(attrs)
-    |> put_assoc(:primary_image, ExCatalog.Image, attrs[:image])
-    |> put_assoc(:images, images)
-    |> put_assoc(:categories, categories)
-    |> put_assoc(:metas, metas)
-    |> put_assoc(:variations, variations)
+    |> cast_assoc(:primary_image, primary_image)
+    |> cast_assoc(:images, images)
+    |> cast_assoc(:categories, categories)
+    |> cast_assoc(:metas, metas)
+    |> cast_assoc(:variations, variations)
   end
 
   @doc """
