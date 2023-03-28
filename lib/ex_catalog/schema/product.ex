@@ -30,7 +30,7 @@ defmodule ExCatalog.Product do
   @doc false
   def changeset(schema, attrs) do
     schema
-    |> cast(attrs, [:sku, :price, :title, :sub_title, :description])
+    |> cast(attrs, [:sku, :price, :title, :sub_title, :description, :primary_image_id])
     |> validate_required([:sku, :price, :title, :sub_title, :description])
   end
 end
