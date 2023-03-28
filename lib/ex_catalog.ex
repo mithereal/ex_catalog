@@ -75,11 +75,11 @@ defmodule ExCatalog do
 
 
   """
-  def products(limit \\ 50, currency \\ :USD) do
+  def products(limit \\ 25, currency \\ :USD) do
     products(limit, nil, nil, currency)
   end
 
-  def products(limit \\ 50, metadata, cursor, currency) do
+  def products(limit \\ 25, metadata, cursor, currency) do
     import Ecto.Query
 
     query =
@@ -182,7 +182,7 @@ defmodule ExCatalog do
 
 
   """
-  def products_by_category(slug, limit \\ 50, currency \\ :USD) do
+  def products_by_category(slug, limit \\ 25, currency \\ :USD) do
     products_by_category(slug, limit, nil, nil, currency)
   end
 
