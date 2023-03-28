@@ -1,7 +1,7 @@
 defmodule ExCatalog.Schema do
   defmacro __using__(type) do
     case type do
-      :uuid ->
+      :binary_id ->
         quote do
           use Ecto.Schema
           @primary_key {:id, :binary_id, autogenerate: true}

@@ -13,8 +13,8 @@ defmodule ExCatalog.Category do
 
     field(:slug, TitleSlug.Type)
 
-    belongs_to(:parent_category, ExCatalog.Category)
-    belongs_to(:image, ExCatalog.Image)
+    belongs_to(:parent_category, ExCatalog.Category, type: ExCatalog.Config.key_type())
+    belongs_to(:image, ExCatalog.Image, type: ExCatalog.Config.key_type())
   end
 
   def changeset(schema, attrs) do

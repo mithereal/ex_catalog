@@ -8,7 +8,7 @@ defmodule ExCatalog.Image do
     field(:path, :string)
     field(:height, :float)
     field(:width, :float)
-    belongs_to(:product, ExCatalog.Product)
+    belongs_to(:product, ExCatalog.Product, type: ExCatalog.Config.key_type())
   end
 
   @doc false

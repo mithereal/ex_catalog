@@ -29,6 +29,16 @@ defmodule ExCatalog.Config do
   end
 
   def key_type() do
-    Application.get_env(:ex_catalog, repo())[:key_type] || :integer
+    case Application.get_env(:ex_catalog, repo())[:key_type] do
+      nil -> :integer
+      _ -> :binary_id
+    end
+  end
+
+  def key_type(:migration) do
+    case Application.get_env(:ex_catalog, repo())[:key_type] do
+      nil -> :integer
+      _ -> :uuid
+    end
   end
 end

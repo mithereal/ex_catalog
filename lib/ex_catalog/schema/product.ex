@@ -9,20 +9,22 @@ defmodule ExCatalog.Product do
     field(:sub_title, :string)
     field(:description, :string)
 
-    belongs_to(:primary_image, ExCatalog.Image)
+    belongs_to(:primary_image, ExCatalog.Image, type: ExCatalog.Config.key_type())
 
     many_to_many(:variations, ExCatalog.Product,
       join_through: ExCatalog.Product.Variation,
-      on_replace: :delete
+      on_replace: :delete,
+      type: ExCatalog.Config.key_type()
     )
 
     many_to_many(:categories, ExCatalog.Category,
       join_through: ExCatalog.Product.Category,
-      on_replace: :delete
+      on_replace: :delete,
+      type: ExCatalog.Config.key_type()
     )
 
-    has_many(:images, ExCatalog.Image, on_replace: :delete)
-    has_many(:metas, ExCatalog.Meta, on_replace: :delete)
+    has_many(:images, ExCatalog.Image, on_replace: :delete, type: ExCatalog.Config.key_type())
+    has_many(:metas, ExCatalog.Meta, on_replace: :delete, type: ExCatalog.Config.key_type())
 
     timestamps()
   end

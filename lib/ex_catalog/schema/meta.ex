@@ -5,7 +5,7 @@ defmodule ExCatalog.Meta do
   schema "catalog_metas" do
     field(:key, :string)
     field(:data, :string)
-    belongs_to(:product, ExCatalog.Product)
+    belongs_to(:product, ExCatalog.Product, type: ExCatalog.Config.key_type())
   end
 
   @doc false

@@ -1,7 +1,7 @@
 defmodule ExCatalog.Repo.Migrations.CurrenciesTable do
   use Ecto.Migration
   def change do
-  key_type = ExCatalog.Config.key_type()
+  key_type = ExCatalog.Config.key_type(:migration)
 
   create table(:catalog_currencies, primary_key: false) do
     add(:id, key_type, primary_key: true)

@@ -4,7 +4,7 @@ defmodule ExCatalog.Video do
 
   schema "catalog_videos" do
     field(:path, :string)
-    belongs_to(:product, ExCatalog.Product)
+    belongs_to(:product, ExCatalog.Product, type: ExCatalog.Config.key_type())
   end
 
   @doc false
