@@ -22,6 +22,6 @@ defmodule ExCatalog.Image do
   def changeset_assoc(schema, attrs) do
     schema
     |> changeset(attrs)
-    |> put_assoc(:product, ExCatalog.Product)
+    |> put_assoc(:product, ExCatalog.Product, attrs[:product])
   end
 end

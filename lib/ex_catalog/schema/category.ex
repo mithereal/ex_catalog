@@ -35,7 +35,7 @@ defmodule ExCatalog.Category do
   def changeset_assoc(schema, attrs) do
     schema
     |> changeset(attrs)
-    |> put_assoc(:parent_category, ExCatalog.Category)
-    |> put_assoc(:image, ExCatalog.Image)
+    |> put_assoc(:parent_category, ExCatalog.Category, attrs[:parent_category])
+    |> put_assoc(:image, ExCatalog.Image, attrs[:image])
   end
 end

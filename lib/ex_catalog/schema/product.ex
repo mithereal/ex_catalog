@@ -2,6 +2,8 @@ defmodule ExCatalog.Product do
   use ExCatalog.Schema, type: ExCatalog.Config.key_type()
   import Ecto.Changeset
 
+  @repo ExCatalog.Config.repo()
+
   schema "catalog_products" do
     field(:sku, :string)
     field(:price, Money.Ecto.Composite.Type)
@@ -38,6 +40,12 @@ defmodule ExCatalog.Product do
   def changeset_assoc(schema, attrs) do
     schema
     |> changeset(attrs)
-    |> put_assoc(:primary_image, ExCatalog.Image)
+    |> put_assoc(:primary_image, ExCatalog.Image, attrs[:image])
+  end
+
+  def new(struct \\ %ExCatalog.Product{}, params \\ %{}) do
+    struct
+    |> changeset_assoc(params)
+    |> @repo.insert()
   end
 end
