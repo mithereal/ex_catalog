@@ -4,6 +4,8 @@ defmodule ExCatalog do
   """
   @repo ExCatalog.Config.repo()
 
+  alias ExCatalog.Category
+
   @doc """
   List version.
 
@@ -166,6 +168,79 @@ defmodule ExCatalog do
       _ ->
         {:ok, price} = ExCatalog.Currencies.convert(reply.price, currency)
         %{reply | price: price}
+    end
+  end
+
+  @doc """
+  List product with preloads by category and optional currency conversion.
+
+  ## Examples
+
+      iex> ExCatalog.products_by_category("test_category", "2242", :USD)
+
+
+  """
+  def products_by_category(slug, limit, currency \\ :USD) do
+    products_by_category(slug, limit, nil, nil, currency)
+  end
+
+  def products_by_category(slug, limit, metadata, cursor, currency) do
+    category = @repo.get_by(%Category{}, slug: slug)
+
+    import Ecto.Query
+
+    query =
+      from(ExCatalog.Product,
+        where: [category_id: ^category.id],
+        preload: [:variations],
+        preload: [:categories],
+        preload: [:metas],
+        preload: [:primary_image],
+        preload: [:images],
+        preload: [:videos]
+      )
+
+    reply =
+      case cursor do
+        :before ->
+          @repo.paginate(
+            query,
+            before: metadata.before,
+            include_total_count: true,
+            cursor_fields: [:inserted_at, :id],
+            limit: limit
+          )
+
+        :after ->
+          @repo.paginate(
+            query,
+            after: metadata.after,
+            include_total_count: true,
+            cursor_fields: [:inserted_at, :id],
+            limit: limit
+          )
+
+        _ ->
+          @repo.paginate(
+            query,
+            include_total_count: true,
+            cursor_fields: [:inserted_at, :id],
+            limit: limit
+          )
+      end
+
+    case currency do
+      nil ->
+        reply
+
+      _ ->
+        {p, m} = reply
+
+        modified =
+          Enum.map(p, fn x ->
+            {:ok, price} = ExCatalog.Currencies.convert(p.price, currency)
+            %{p | price: price}
+          end)
     end
   end
 end
