@@ -9,7 +9,7 @@ defmodule ExCatalog.Pdf do
 
   ## Examples
 
-      iex> ExCatalog.export_products()
+      iex> ExCatalog.export_products(ExCatalog.Template.Example)
 
 
   """
@@ -60,7 +60,7 @@ defmodule ExCatalog.Pdf do
 
   ## Examples
 
-      iex> ExCatalog.export_categories()
+      iex> ExCatalog.export_categories(ExCatalog.Template.Category)
 
 
   """

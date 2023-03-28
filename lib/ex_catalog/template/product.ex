@@ -1,4 +1,4 @@
-defmodule ExCatalog.Template.Example do
+defmodule ExCatalog.Template.Product do
   @moduledoc """
   An Example of a Html Template to be sent to the PDF Creator
   """
@@ -6,7 +6,7 @@ defmodule ExCatalog.Template.Example do
   @behaviour ExCatalog.Pdf.Template
 
   @impl true
-  def render(%{product: product, sku: sku} = args) do
+  def render(%{product: product} = args) do
     EEx.eval_string(html(), args)
   end
 
