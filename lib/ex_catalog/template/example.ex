@@ -10,7 +10,7 @@ defmodule ExCatalog.Template.Example do
     EEx.eval_string(html(), args)
   end
 
-  def html() do
+  defp html() do
     "<div><span><%= product.title %></span><span><%= product.sku %></span></div>"
   end
 end
