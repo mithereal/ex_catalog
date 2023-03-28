@@ -182,7 +182,7 @@ defmodule ExCatalog do
 
 
   """
-  def products_by_category(slug, limit, currency \\ :USD) do
+  def products_by_category(slug, limit \\ 50, currency \\ :USD) do
     products_by_category(slug, limit, nil, nil, currency)
   end
 
