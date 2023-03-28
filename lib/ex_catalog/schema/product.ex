@@ -22,7 +22,10 @@ defmodule ExCatalog.Product do
     )
 
     has_many(:images, ExCatalog.Image, on_replace: :delete)
+    has_many(:image, through: [:images, :image])
+
     has_many(:metas, ExCatalog.Meta, on_replace: :delete)
+    has_many(:meta, through: [:metas, :meta])
 
     timestamps()
   end
