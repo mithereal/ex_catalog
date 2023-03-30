@@ -325,8 +325,14 @@ defmodule ExCatalog do
       from(p in Product, where: p.sku == ^sku, select: p)
       |> with_undeleted
 
-    @repo.one!(query)
-    |> @repo.soft_delete!()
+    case Keyword.has_key?(@repo.__info__(:functions), :soft_restore!) do
+      true ->
+        @repo.one!(query)
+        |> @repo.soft_restore!()
+
+      false ->
+        {:error, "Not Available"}
+    end
   end
 
   def active(sku, false) do
