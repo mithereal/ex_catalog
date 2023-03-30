@@ -312,8 +312,8 @@ defmodule ExCatalog do
 
   ## Examples
 
-      iex> ExCatalog.active(true)
-      iex> ExCatalog.active(false)
+      iex> ExCatalog.active(:category, "111222233")
+      iex> ExCatalog.active(:product, "111222233")
 
 
   """
