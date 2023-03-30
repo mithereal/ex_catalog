@@ -317,13 +317,20 @@ defmodule ExCatalog do
 
 
   """
-  def active(sku) do
+  def active(type, id) do
     import Ecto.Query
     import Ecto.SoftDelete.Query
 
     query =
-      from(p in Product, where: p.sku == ^sku, select: p)
-      |> with_undeleted
+      case type do
+        :category ->
+          from(c in Category, where: c.id == ^id, select: c)
+          |> with_undeleted
+
+        _ ->
+          from(p in Product, where: p.id == ^id, select: p)
+          |> with_undeleted
+      end
 
     case Keyword.has_key?(@repo.__info__(:functions), :soft_restore!) do
       true ->
@@ -335,8 +342,20 @@ defmodule ExCatalog do
     end
   end
 
-  def active(sku, false) do
-    @repo.get_by!(Product, sku: sku)
-    |> @repo.soft_delete!()
+  def active(type, id, false) do
+    import Ecto.Query
+    import Ecto.SoftDelete.Query
+
+    case type do
+      :category ->
+        @repo.get_by!(Category, id: id)
+
+        from(c in Category, where: c.id == ^id, select: c)
+        |> @repo.soft_delete!()
+
+      _ ->
+        from(p in Product, where: p.id == ^id, select: p)
+        |> @repo.soft_delete!()
+    end
   end
 end
