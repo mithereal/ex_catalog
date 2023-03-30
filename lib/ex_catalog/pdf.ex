@@ -13,10 +13,16 @@ defmodule ExCatalog.Pdf do
 
 
   """
-  def export_products(template, limit \\ 500, filename \\ "products.pdf") do
+  def export_products(
+        template,
+        limit \\ 500,
+        filename \\ "products.pdf",
+        currency \\ :USD,
+        deleted \\ false
+      ) do
     case ExCatalog.Util.module_compiled?(ChromicPDF) do
       true ->
-        {data, meta} = ExCatalog.products(limit)
+        {data, meta} = ExCatalog.products(limit, currency, deleted)
 
         html =
           Enum.map(data, fn p ->
@@ -121,9 +127,14 @@ defmodule ExCatalog.Pdf do
 
   """
 
-  def export({categories_template, products_template}, limit \\ 500) do
+  def export(
+        {categories_template, products_template},
+        limit \\ 500,
+        currency \\ :USD,
+        deleted \\ false
+      ) do
     {category_status, _} = export_categories(categories_template, limit)
-    {products_status, _} = export_products(products_template, limit)
+    {products_status, _} = export_products(products_template, limit, currency, deleted)
 
     case category_status == :ok && products_status == :ok do
       true -> {:ok, "Export Success"}
