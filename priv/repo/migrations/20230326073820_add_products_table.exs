@@ -1,5 +1,6 @@
 defmodule ExCatalog.Repo.Migrations.AddProductsTable do
   use Ecto.Migration
+  import Ecto.SoftDelete.Migration
 
   def change do
     key_type = ExCatalog.Config.key_type(:migration)
@@ -13,6 +14,7 @@ defmodule ExCatalog.Repo.Migrations.AddProductsTable do
       add(:price, :money_with_currency)
 
       timestamps()
+      soft_delete_columns()
 
       add(:image_id, references(:catalog_images, on_delete: :nothing, type: key_type))
       add(:primary_image_id, references(:catalog_images, on_delete: :nothing, type: key_type))

@@ -1,6 +1,7 @@
 defmodule ExCatalog.Product do
   use ExCatalog.Schema
   import Ecto.Changeset
+  import Ecto.SoftDelete.Schema
 
   @repo ExCatalog.Config.repo()
 
@@ -27,6 +28,7 @@ defmodule ExCatalog.Product do
     has_many(:metas, ExCatalog.Meta, on_replace: :delete)
 
     timestamps()
+    soft_delete_schema()
   end
 
   @doc false

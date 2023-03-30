@@ -5,6 +5,7 @@ defmodule ExCatalog do
   @repo ExCatalog.Config.repo()
 
   alias ExCatalog.Category
+  alias ExCatalog.Product
 
   @doc """
   List version.
@@ -246,5 +247,32 @@ defmodule ExCatalog do
 
         {modified, meta}
     end
+  end
+
+  @doc """
+  Change the status
+
+  ## Examples
+
+      iex> ExCatalog.active(true)
+      iex> ExCatalog.active(false)
+
+
+  """
+  def active(sku, true) do
+    import Ecto.Query
+    import Ecto.SoftDelete.Query
+
+    query =
+      from(p in Product, where: p.sku == ^sku, select: p)
+      |> with_undeleted
+
+    @repo.one!(query)
+    |> @repo.soft_delete!()
+  end
+
+  def active(sku, false) do
+    @repo.get_by!(Product, sku: sku)
+    |> @repo.soft_delete!()
   end
 end

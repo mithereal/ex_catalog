@@ -3,6 +3,8 @@ defmodule ExCatalog.Repo do
     otp_app: :ex_catalog,
     adapter: Ecto.Adapters.Postgres
 
+  use Ecto.SoftDelete.Repo
+
   use Paginator
 
   @doc """

@@ -44,6 +44,7 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ex_cldr_numbers" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ex_cldr_currencies" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_autoslug_field" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_soft_delete" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="ex_doc" level="project" />
@@ -105,5 +106,6 @@
     <orderEntry type="library" name="jsone" level="project" />
     <orderEntry type="library" name="stream_data" level="project" />
     <orderEntry type="library" name="tiny" level="project" />
+    <orderEntry type="library" name="ecto_soft_delete" level="project" />
   </component>
 </module>
