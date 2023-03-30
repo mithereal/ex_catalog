@@ -236,15 +236,15 @@ defmodule ExCatalog do
         reply
 
       _ ->
-        {p, metadata} = reply
+        {data, meta} = reply
 
         modified =
-          Enum.map(p, fn x ->
+          Enum.map(data, fn x ->
             {:ok, price} = ExCatalog.Currencies.convert(x.price, currency)
             %{x | price: price}
           end)
 
-        {modified, metadata}
+        {modified, meta}
     end
   end
 end
