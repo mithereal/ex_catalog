@@ -317,7 +317,7 @@ defmodule ExCatalog do
 
 
   """
-  def active(sku, true) do
+  def active(sku) do
     import Ecto.Query
     import Ecto.SoftDelete.Query
 
