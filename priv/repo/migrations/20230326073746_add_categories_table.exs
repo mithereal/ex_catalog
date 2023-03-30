@@ -1,5 +1,6 @@
 defmodule ExCatalog.Repo.Migrations.AddCategoriesTable do
   use Ecto.Migration
+  import Ecto.SoftDelete.Migration
 
   def change do
     key_type = ExCatalog.Config.key_type(:migration)
@@ -10,6 +11,7 @@ defmodule ExCatalog.Repo.Migrations.AddCategoriesTable do
       add(:description, :string)
       add(:sort_order, :integer)
       add(:slug, :string, null: false)
+      soft_delete_columns()
     end
   end
 end

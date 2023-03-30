@@ -72,16 +72,15 @@ defmodule ExCatalog.Pdf do
 
 
   """
-  def export_categories(template, limit \\ 500, filename \\ "categories.csv") do
+  def export_categories(template, limit \\ 500, filename \\ "categories.csv", deleted \\ false) do
     case ExCatalog.Util.module_compiled?(CSV) do
       true ->
-        {data, meta} = ExCatalog.index(limit)
+        {data, meta} = ExCatalog.index(limit, nil, nil, deleted)
 
-        rendered =
-          Enum.map(data, fn p ->
-            template.render(p)
-          end)
-          |> Enum.join(" ")
+        Enum.map(data, fn p ->
+          template.render(p)
+        end)
+        |> Enum.join(" ")
 
         html = {:html, rendered}
 

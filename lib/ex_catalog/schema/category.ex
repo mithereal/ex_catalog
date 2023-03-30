@@ -3,6 +3,7 @@ defmodule ExCatalog.Category do
   use EctoAutoslugField.Slug, from: :title, to: :slug
   use ExCatalog.AutoSlug
   import Ecto.Changeset
+  import Ecto.SoftDelete.Schema
 
   alias ExCatalog.Category.TitleSlug
 
@@ -15,6 +16,8 @@ defmodule ExCatalog.Category do
 
     belongs_to(:parent_category, ExCatalog.Category)
     belongs_to(:image, ExCatalog.Image)
+
+    soft_delete_schema()
   end
 
   def changeset(schema, attrs) do
