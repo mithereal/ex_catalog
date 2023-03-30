@@ -308,12 +308,13 @@ defmodule ExCatalog do
   end
 
   @doc """
-  Change the status active or disabled, this controls which products the user can see, (only the active products)
+  Change the status active or disabled, this controls which products the user can see, (by default only the active products are displayed)
 
   ## Examples
 
-      iex> ExCatalog.active(:category, "111222233")
-      iex> ExCatalog.active(:product, "111222233")
+      iex> id = "1111-2222-3333-4444"
+      iex> ExCatalog.active(:category, id)
+      iex> ExCatalog.active(:product, id)
 
 
   """
