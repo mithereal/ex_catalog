@@ -77,10 +77,11 @@ defmodule ExCatalog.Pdf do
       true ->
         {data, meta} = ExCatalog.index(limit, nil, nil, deleted)
 
-        Enum.map(data, fn p ->
-          template.render(p)
-        end)
-        |> Enum.join(" ")
+        rendered =
+          Enum.map(data, fn p ->
+            template.render(p)
+          end)
+          |> Enum.join(" ")
 
         html = {:html, rendered}
 
