@@ -28,14 +28,25 @@ defmodule ExCatalog do
 
 
   """
-  def index(limit \\ 25, metadata \\ nil, cursor \\ nil) do
+  def index(limit \\ 25, metadata \\ nil, cursor \\ nil, deleted \\ false) do
     import Ecto.Query
+    import Ecto.SoftDelete.Query
 
     query =
-      from(ExCatalog.Category,
-        preload: [:parent_category],
-        preload: [:image]
-      )
+      case(deleted) do
+        false ->
+          from(ExCatalog.Category,
+            preload: [:parent_category],
+            preload: [:image]
+          )
+
+        true ->
+          from(ExCatalog.Category,
+            preload: [:parent_category],
+            preload: [:image]
+          )
+          |> with_undeleted
+      end
 
     case cursor do
       :before ->
@@ -76,22 +87,37 @@ defmodule ExCatalog do
 
 
   """
-  def products(limit \\ 25, currency \\ :USD) do
-    products(limit, nil, nil, currency)
+  def products(limit \\ 25, currency \\ :USD, deleted \\ false) do
+    products(limit, nil, nil, currency, deleted)
   end
 
-  def products(limit \\ 25, metadata, cursor, currency) do
+  def products(limit \\ 25, metadata, cursor, currency, deleted) do
     import Ecto.Query
+    import Ecto.SoftDelete.Query
 
     query =
-      from(ExCatalog.Product,
-        preload: [:variations],
-        preload: [:categories],
-        preload: [:metas],
-        preload: [:primary_image],
-        preload: [:images],
-        preload: [:videos]
-      )
+      case(deleted) do
+        false ->
+          from(ExCatalog.Product,
+            preload: [:variations],
+            preload: [:categories],
+            preload: [:metas],
+            preload: [:primary_image],
+            preload: [:images],
+            preload: [:videos]
+          )
+
+        true ->
+          from(ExCatalog.Product,
+            preload: [:variations],
+            preload: [:categories],
+            preload: [:metas],
+            preload: [:primary_image],
+            preload: [:images],
+            preload: [:videos]
+          )
+          |> with_undeleted
+      end
 
     reply =
       case cursor do
@@ -148,19 +174,35 @@ defmodule ExCatalog do
 
 
   """
-  def product(sku, currency \\ nil) do
+  def product(sku, currency \\ nil, deleted \\ false) do
     import Ecto.Query
+    import Ecto.SoftDelete.Query
 
     query =
-      from(ExCatalog.Product,
-        where: [sku: ^sku],
-        preload: [:variations],
-        preload: [:categories],
-        preload: [:metas],
-        preload: [:primary_image],
-        preload: [:images],
-        preload: [:videos]
-      )
+      case(deleted) do
+        false ->
+          from(ExCatalog.Product,
+            where: [sku: ^sku],
+            preload: [:variations],
+            preload: [:categories],
+            preload: [:metas],
+            preload: [:primary_image],
+            preload: [:images],
+            preload: [:videos]
+          )
+
+        true ->
+          from(ExCatalog.Product,
+            where: [sku: ^sku],
+            preload: [:variations],
+            preload: [:categories],
+            preload: [:metas],
+            preload: [:primary_image],
+            preload: [:images],
+            preload: [:videos]
+          )
+          |> with_undeleted
+      end
 
     [reply] = @repo.all(query)
 
@@ -183,25 +225,41 @@ defmodule ExCatalog do
 
 
   """
-  def products_by_category(slug, limit \\ 25, currency \\ :USD) do
-    products_by_category(slug, limit, nil, nil, currency)
+  def products_by_category(slug, limit \\ 25, currency \\ :USD, deleted \\ false) do
+    products_by_category(slug, limit, nil, nil, currency, deleted)
   end
 
-  def products_by_category(slug, limit, metadata, cursor, currency) do
+  def products_by_category(slug, limit, metadata, cursor, currency, deleted) do
     category = @repo.get_by(%Category{}, slug: slug)
 
     import Ecto.Query
+    import Ecto.SoftDelete.Query
 
     query =
-      from(ExCatalog.Product,
-        where: [category_id: ^category.id],
-        preload: [:variations],
-        preload: [:categories],
-        preload: [:metas],
-        preload: [:primary_image],
-        preload: [:images],
-        preload: [:videos]
-      )
+      case(deleted) do
+        false ->
+          from(ExCatalog.Product,
+            where: [category_id: ^category.id],
+            preload: [:variations],
+            preload: [:categories],
+            preload: [:metas],
+            preload: [:primary_image],
+            preload: [:images],
+            preload: [:videos]
+          )
+
+        true ->
+          from(ExCatalog.Product,
+            where: [category_id: ^category.id],
+            preload: [:variations],
+            preload: [:categories],
+            preload: [:metas],
+            preload: [:primary_image],
+            preload: [:images],
+            preload: [:videos]
+          )
+          |> with_undeleted
+      end
 
     reply =
       case cursor do
@@ -250,7 +308,7 @@ defmodule ExCatalog do
   end
 
   @doc """
-  Change the status
+  Change the status active or disabled, this controls which products the user can see, (only the active products)
 
   ## Examples
 
