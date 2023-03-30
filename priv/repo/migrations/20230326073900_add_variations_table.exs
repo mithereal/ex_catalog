@@ -6,6 +6,7 @@ defmodule ExCatalog.Repo.Migrations.AddVariationsTable do
 
     create table(:catalog_product_variations, primary_key: false) do
       add(:id, key_type, primary_key: true)
+      add(:title, :string)
       add(:parent_id, references(:catalog_products, on_delete: :nothing, type: key_type))
       add(:product_id, references(:catalog_products, on_delete: :nothing, type: key_type))
     end
