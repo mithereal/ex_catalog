@@ -7,7 +7,7 @@ defmodule ExCatalog.Repo.Migrations.AddMetasTable do
     create table(:catalog_metas, primary_key: false) do
       add(:id, key_type, primary_key: true)
       add(:key, :string)
-      add(:data, :string)
+      add(:data, :map)
     end
   end
 end

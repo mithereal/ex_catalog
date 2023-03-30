@@ -4,7 +4,7 @@ defmodule ExCatalog.Meta do
 
   schema "catalog_metas" do
     field(:key, :string)
-    field(:data, :string)
+    field(:data, :map)
     belongs_to(:product, ExCatalog.Product)
   end
 
