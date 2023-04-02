@@ -87,36 +87,65 @@ defmodule ExCatalog do
 
 
   """
-  def products(limit \\ 25, currency \\ :USD, deleted \\ false) do
-    products(limit, nil, nil, currency, deleted)
+  def products(limit \\ 25, currency \\ :USD, deleted \\ false, owner_id \\ nil) do
+    products(limit, nil, nil, currency, deleted, owner_id)
   end
 
-  def products(limit \\ 25, metadata, cursor, currency, deleted) do
+  def products(limit \\ 25, metadata, cursor, currency, deleted, owner_id) do
     import Ecto.Query
     import Ecto.SoftDelete.Query
 
     query =
-      case(deleted) do
-        false ->
-          from(ExCatalog.Product,
-            preload: [:variations],
-            preload: [:categories],
-            preload: [:metas],
-            preload: [:primary_image],
-            preload: [:images],
-            preload: [:videos]
-          )
+      case(owner_id) do
+        nil ->
+          case(deleted) do
+            false ->
+              from(ExCatalog.Product,
+                preload: [:variations],
+                preload: [:categories],
+                preload: [:metas],
+                preload: [:primary_image],
+                preload: [:images],
+                preload: [:videos]
+              )
 
-        true ->
-          from(ExCatalog.Product,
-            preload: [:variations],
-            preload: [:categories],
-            preload: [:metas],
-            preload: [:primary_image],
-            preload: [:images],
-            preload: [:videos]
-          )
-          |> with_undeleted
+            true ->
+              from(ExCatalog.Product,
+                preload: [:variations],
+                preload: [:categories],
+                preload: [:metas],
+                preload: [:primary_image],
+                preload: [:images],
+                preload: [:videos]
+              )
+              |> with_undeleted
+          end
+
+        _ ->
+          case(deleted) do
+            false ->
+              from(ExCatalog.Product,
+                where: [owner_id: ^owner_id],
+                preload: [:variations],
+                preload: [:categories],
+                preload: [:metas],
+                preload: [:primary_image],
+                preload: [:images],
+                preload: [:videos]
+              )
+
+            true ->
+              from(ExCatalog.Product,
+                where: [owner_id: ^owner_id],
+                preload: [:variations],
+                preload: [:categories],
+                preload: [:metas],
+                preload: [:primary_image],
+                preload: [:images],
+                preload: [:videos]
+              )
+              |> with_undeleted
+          end
       end
 
     reply =
