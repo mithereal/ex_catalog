@@ -12,6 +12,7 @@ defmodule ExCatalog.Repo.Migrations.AddProductsTable do
       add(:description, :string)
       add(:sku, :string)
       add(:price, :money_with_currency)
+      add(:owner_id, @foreign_key_type)
 
       timestamps()
       soft_delete_columns()

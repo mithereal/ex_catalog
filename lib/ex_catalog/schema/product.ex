@@ -11,6 +11,7 @@ defmodule ExCatalog.Product do
     field(:title, :string)
     field(:sub_title, :string)
     field(:description, :string)
+    field(:owner_id, @foreign_key_type)
 
     belongs_to(:primary_image, ExCatalog.Image)
 
