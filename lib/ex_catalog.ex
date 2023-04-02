@@ -221,25 +221,30 @@ defmodule ExCatalog do
 
   ## Examples
 
-      iex> ExCatalog.products_by_category("test_category", "2242", :USD)
+      iex> ExCatalog.products_by_category("test_category", "2242", :USD, false, order_by: :sku)
 
 
   """
-  def products_by_category(slug, limit \\ 25, currency \\ :USD, deleted \\ false) do
-    products_by_category(slug, limit, nil, nil, currency, deleted)
+  def products_by_category(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ []) do
+    products_by_category(slug, limit, nil, nil, currency, deleted, opts)
   end
 
-  def products_by_category(slug, limit, metadata, cursor, currency, deleted) do
+  def products_by_category(slug, limit, metadata, cursor, currency, deleted, opts) do
     category = @repo.get_by(%Category{}, slug: slug)
 
     import Ecto.Query
     import Ecto.SoftDelete.Query
+
+    order = Keyword.get(opts, :order) || :desc
+    by = Keyword.get(opts, :order_by) || :updated_at
+    order_by = [{order, by}]
 
     query =
       case(deleted) do
         false ->
           from(ExCatalog.Product,
             where: [category_id: ^category.id],
+            order_by: ^order_by,
             preload: [:variations],
             preload: [:categories],
             preload: [:metas],
