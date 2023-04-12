@@ -352,12 +352,7 @@ defmodule ExCatalog do
 
 
   """
-  def products_by_country(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ [])
-      when is_map(slug) do
-    products_by_country([slug], limit, nil, nil, currency, deleted, opts)
-  end
-
-  def products_by_country(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ []) do
+  def products_by_country(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ []) when is_list(slug) do
     products_by_country(slug, limit, nil, nil, currency, deleted, opts)
   end
 
