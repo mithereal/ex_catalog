@@ -6,6 +6,7 @@ defmodule ExCatalog do
 
   alias ExCatalog.Category
   alias ExCatalog.Product
+  alias ExCatalog.Manufacturer
 
   @doc """
   List version.

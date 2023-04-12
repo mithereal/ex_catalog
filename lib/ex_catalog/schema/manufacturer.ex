@@ -1,4 +1,4 @@
-defmodule ExCatalog.Manufacturers do
+defmodule ExCatalog.Manufacturer do
   use ExCatalog.Schema
   import Ecto.Changeset
   use EctoAutoslugField.Slug, from: :title, to: :slug
