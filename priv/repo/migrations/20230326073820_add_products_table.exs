@@ -9,6 +9,7 @@ defmodule ExCatalog.Repo.Migrations.AddProductsTable do
       add(:id, key_type, primary_key: true)
       add(:title, :string)
       add(:sub_title, :string)
+      add(:model, :string)
       add(:description, :string)
       add(:sku, :string)
       add(:price, :money_with_currency)

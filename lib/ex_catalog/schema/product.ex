@@ -15,6 +15,7 @@ defmodule ExCatalog.Product do
     field(:title, :string)
     field(:sub_title, :string)
     field(:description, :string)
+    field(:model, :string)
     field(:origin, :string)
     field(:owner_id, @foreign_key_type)
 
@@ -48,6 +49,7 @@ defmodule ExCatalog.Product do
       :sku,
       :price,
       :title,
+      :model,
       :sub_title,
       :description,
       :primary_image_id,
