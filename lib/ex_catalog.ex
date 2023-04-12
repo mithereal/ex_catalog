@@ -183,9 +183,8 @@ defmodule ExCatalog do
         reply
 
       _ ->
-
         modified =
-          Enum.map(p, fn x ->
+          Enum.map(reply.entries, fn x ->
             {:ok, price} = ExCatalog.Currencies.convert(x.price, currency)
             %{x | price: price}
           end)
@@ -330,9 +329,8 @@ defmodule ExCatalog do
         reply
 
       _ ->
-
         modified =
-          Enum.map(data, fn x ->
+          Enum.map(reply.entries, fn x ->
             {:ok, price} = ExCatalog.Currencies.convert(x.price, currency)
             %{x | price: price}
           end)
@@ -425,9 +423,8 @@ defmodule ExCatalog do
         reply
 
       _ ->
-
         modified =
-          Enum.map(data, fn x ->
+          Enum.map(reply.entries, fn x ->
             {:ok, price} = ExCatalog.Currencies.convert(x.price, currency)
             %{x | price: price}
           end)
@@ -520,9 +517,8 @@ defmodule ExCatalog do
         reply
 
       _ ->
-
         modified =
-          Enum.map(data, fn x ->
+          Enum.map(reply.entries, fn x ->
             {:ok, price} = ExCatalog.Currencies.convert(x.price, currency)
             %{x | price: price}
           end)
