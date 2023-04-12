@@ -1,7 +1,7 @@
 defmodule ExCatalog.MixProject do
   use Mix.Project
 
-  @version "1.5.3"
+  @version "1.5.4"
   @source_url "https://github.com/mithereal/ExCatalog"
 
   def project do
