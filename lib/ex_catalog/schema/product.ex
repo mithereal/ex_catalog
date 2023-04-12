@@ -2,6 +2,10 @@ defmodule ExCatalog.Product do
   use ExCatalog.Schema
   import Ecto.Changeset
   import Ecto.SoftDelete.Schema
+  use EctoAutoslugField.Slug, from: :title, to: :slug
+  use ExCatalog.AutoSlug
+
+  alias ExCatalog.Product.TitleSlug
 
   @repo ExCatalog.Config.repo()
 
@@ -11,9 +15,14 @@ defmodule ExCatalog.Product do
     field(:title, :string)
     field(:sub_title, :string)
     field(:description, :string)
+    field(:origin, :string)
     field(:owner_id, @foreign_key_type)
 
+    field(:slug, TitleSlug.Type)
+
     belongs_to(:primary_image, ExCatalog.Image)
+
+    belongs_to(:manufacturer, ExCatalog.Manufacturer)
 
     many_to_many(:variations, ExCatalog.Product,
       join_through: ExCatalog.Product.Variation,
@@ -35,7 +44,17 @@ defmodule ExCatalog.Product do
   @doc false
   def changeset(schema, attrs) do
     schema
-    |> cast(attrs, [:sku, :price, :title, :sub_title, :description, :primary_image_id, :owner_id])
+    |> cast(attrs, [
+      :sku,
+      :price,
+      :title,
+      :sub_title,
+      :description,
+      :primary_image_id,
+      :owner_id,
+      :origin,
+      :manufacturer
+    ])
     |> validate_required([:sku, :price, :title, :sub_title, :description])
   end
 
@@ -46,6 +65,7 @@ defmodule ExCatalog.Product do
     categories = attrs[:categories] || []
     metas = attrs[:metas] || []
     variations = attrs[:variations] || []
+    manufacturer = attrs[:manufacturer] || []
 
     schema
     |> changeset(attrs)
@@ -54,6 +74,7 @@ defmodule ExCatalog.Product do
     |> cast_assoc(:categories, categories)
     |> cast_assoc(:metas, metas)
     |> cast_assoc(:variations, variations)
+    |> cast_assoc(:manufacturer, manufacturer)
   end
 
   @doc """

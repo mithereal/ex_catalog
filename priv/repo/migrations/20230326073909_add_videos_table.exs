@@ -7,6 +7,7 @@ defmodule ExCatalog.Repo.Migrations.AddVideosTable do
     create table(:catalog_videos, primary_key: false) do
       add(:id, key_type, primary_key: true)
       add(:path, :string)
+      add(:slug, :string, null: false)
 
       add(:product_id, references(:catalog_products, on_delete: :nothing, type: key_type))
     end

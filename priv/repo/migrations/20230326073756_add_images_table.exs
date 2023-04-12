@@ -12,5 +12,9 @@ defmodule ExCatalog.Repo.Migrations.AddImagesTable do
       add(:height, :string)
       add(:width, :string)
     end
+
+    alter table(:catalog_categories) do
+      add(:image_id, references(:catalog_images, on_delete: :nothing, type: key_type))
+    end
   end
 end

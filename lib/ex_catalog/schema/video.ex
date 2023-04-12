@@ -1,10 +1,16 @@
 defmodule ExCatalog.Video do
   use ExCatalog.Schema
   import Ecto.Changeset
+  use EctoAutoslugField.Slug, from: :title, to: :slug
+  use ExCatalog.AutoSlug
+
+  alias ExCatalog.Video.TitleSlug
 
   schema "catalog_videos" do
     field(:path, :string)
     belongs_to(:product, ExCatalog.Product)
+
+    field(:slug, TitleSlug.Type)
   end
 
   @doc false

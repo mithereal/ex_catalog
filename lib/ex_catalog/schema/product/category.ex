@@ -1,6 +1,6 @@
 defmodule ExCatalog.Product.Category do
   @moduledoc false
-  use Ecto.Schema
+  use ExCatalog.Schema
 
   schema "catalog_product_categories" do
     belongs_to(:category, ExCatalog.Category, type: ExCatalog.Config.key_type())

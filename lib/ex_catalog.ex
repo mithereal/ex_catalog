@@ -341,6 +341,198 @@ defmodule ExCatalog do
     end
   end
 
+  ###
+  @doc """
+  List product with preloads by category and optional currency conversion.
+
+  ## Examples
+
+      iex> ExCatalog.products_by_category("test_category", "2242", :USD, false, order_by: :sku)
+
+
+  """
+  def products_by_country(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ []) do
+    products_by_country(slug, limit, nil, nil, currency, deleted, opts)
+  end
+
+  def products_by_country(slug, limit, metadata, cursor, currency, deleted, opts) do
+    import Ecto.Query
+    import Ecto.SoftDelete.Query
+
+    order = Keyword.get(opts, :order) || :desc
+    by = Keyword.get(opts, :order_by) || :updated_at
+    order_by = [{order, by}]
+
+    query =
+      case(deleted) do
+        false ->
+          from(ExCatalog.Product,
+            where: [origin: ^slug],
+            order_by: ^order_by,
+            preload: [:variations],
+            preload: [:categories],
+            preload: [:metas],
+            preload: [:primary_image],
+            preload: [:images],
+            preload: [:videos]
+          )
+
+        true ->
+          from(ExCatalog.Product,
+            where: [origin: ^slug],
+            preload: [:variations],
+            preload: [:categories],
+            preload: [:metas],
+            preload: [:primary_image],
+            preload: [:images],
+            preload: [:videos]
+          )
+          |> with_undeleted
+      end
+
+    reply =
+      case cursor do
+        :before ->
+          @repo.paginate(
+            query,
+            before: metadata.before,
+            include_total_count: true,
+            cursor_fields: [:inserted_at, :id],
+            limit: limit
+          )
+
+        :after ->
+          @repo.paginate(
+            query,
+            after: metadata.after,
+            include_total_count: true,
+            cursor_fields: [:inserted_at, :id],
+            limit: limit
+          )
+
+        _ ->
+          @repo.paginate(
+            query,
+            include_total_count: true,
+            cursor_fields: [:inserted_at, :id],
+            limit: limit
+          )
+      end
+
+    case currency do
+      nil ->
+        reply
+
+      _ ->
+        {data, meta} = reply
+
+        modified =
+          Enum.map(data, fn x ->
+            {:ok, price} = ExCatalog.Currencies.convert(x.price, currency)
+            %{x | price: price}
+          end)
+
+        {modified, meta}
+    end
+  end
+
+  @doc """
+  List product with preloads by category and optional currency conversion.
+
+  ## Examples
+
+      iex> ExCatalog.products_by_category("test_category", "2242", :USD, false, order_by: :sku)
+
+
+  """
+  def products_by_manufacturer(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ []) do
+    products_by_manufacturer(slug, limit, nil, nil, currency, deleted, opts)
+  end
+
+  def products_by_manufacturer(slug, limit, metadata, cursor, currency, deleted, opts) do
+    manufacturer = @repo.get_by(%Manufacturer{}, slug: slug)
+
+    import Ecto.Query
+    import Ecto.SoftDelete.Query
+
+    order = Keyword.get(opts, :order) || :desc
+    by = Keyword.get(opts, :order_by) || :updated_at
+    order_by = [{order, by}]
+
+    query =
+      case(deleted) do
+        false ->
+          from(ExCatalog.Product,
+            where: [manufacturer: ^manufacturer],
+            order_by: ^order_by,
+            preload: [:variations],
+            preload: [:categories],
+            preload: [:metas],
+            preload: [:primary_image],
+            preload: [:images],
+            preload: [:videos]
+          )
+
+        true ->
+          from(ExCatalog.Product,
+            where: [origin: ^slug],
+            preload: [:variations],
+            preload: [:categories],
+            preload: [:metas],
+            preload: [:primary_image],
+            preload: [:images],
+            preload: [:videos]
+          )
+          |> with_undeleted
+      end
+
+    reply =
+      case cursor do
+        :before ->
+          @repo.paginate(
+            query,
+            before: metadata.before,
+            include_total_count: true,
+            cursor_fields: [:inserted_at, :id],
+            limit: limit
+          )
+
+        :after ->
+          @repo.paginate(
+            query,
+            after: metadata.after,
+            include_total_count: true,
+            cursor_fields: [:inserted_at, :id],
+            limit: limit
+          )
+
+        _ ->
+          @repo.paginate(
+            query,
+            include_total_count: true,
+            cursor_fields: [:inserted_at, :id],
+            limit: limit
+          )
+      end
+
+    case currency do
+      nil ->
+        reply
+
+      _ ->
+        {data, meta} = reply
+
+        modified =
+          Enum.map(data, fn x ->
+            {:ok, price} = ExCatalog.Currencies.convert(x.price, currency)
+            %{x | price: price}
+          end)
+
+        {modified, meta}
+    end
+  end
+
+  ###
   @doc """
   Change the status active or disabled, this controls which products the user can see, (by default only the active products are displayed)
 
