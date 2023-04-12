@@ -352,6 +352,11 @@ defmodule ExCatalog do
 
 
   """
+  def products_by_country(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ [])
+      when is_map(slug) do
+    products_by_country([slug], limit, nil, nil, currency, deleted, opts)
+  end
+
   def products_by_country(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ []) do
     products_by_country(slug, limit, nil, nil, currency, deleted, opts)
   end
@@ -367,8 +372,8 @@ defmodule ExCatalog do
     query =
       case(deleted) do
         false ->
-          from(ExCatalog.Product,
-            where: [origin: ^slug],
+          from(p in ExCatalog.Product,
+            where: p.slug in ^slug,
             order_by: ^order_by,
             preload: [:variations],
             preload: [:categories],
@@ -379,8 +384,8 @@ defmodule ExCatalog do
           )
 
         true ->
-          from(ExCatalog.Product,
-            where: [origin: ^slug],
+          from(p in ExCatalog.Product,
+            where: p.slug in ^slug,
             preload: [:variations],
             preload: [:categories],
             preload: [:metas],
