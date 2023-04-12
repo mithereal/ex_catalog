@@ -10,10 +10,11 @@ defmodule ExCatalog.Repo.Migrations.AddProductsTable do
       add(:title, :string)
       add(:sub_title, :string)
       add(:model, :string)
+      add(:origin, :string)
       add(:description, :string)
       add(:sku, :string)
       add(:price, :money_with_currency)
-      add(:owner_id, @foreign_key_type)
+      add(:owner_id, key_type)
       add(:slug, :string, null: false)
 
       timestamps()

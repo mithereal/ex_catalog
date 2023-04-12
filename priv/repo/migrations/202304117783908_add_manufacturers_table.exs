@@ -12,5 +12,9 @@ defmodule ExCatalog.Repo.Migrations.ManufacturersTable do
 
       add(:image_id, references(:catalog_images, on_delete: :nothing, type: key_type))
     end
+
+    alter table(:catalog_products) do
+      add(:manufacturer_id, references(:catalog_manufacturers, on_delete: :nothing, type: key_type))
+    end
   end
 end

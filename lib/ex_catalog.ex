@@ -183,7 +183,6 @@ defmodule ExCatalog do
         reply
 
       _ ->
-        {p, metadata} = reply
 
         modified =
           Enum.map(p, fn x ->
@@ -191,7 +190,7 @@ defmodule ExCatalog do
             %{x | price: price}
           end)
 
-        {modified, metadata}
+        {modified, reply.metadata}
     end
   end
 
@@ -268,12 +267,13 @@ defmodule ExCatalog do
     order = Keyword.get(opts, :order) || :desc
     by = Keyword.get(opts, :order_by) || :updated_at
     order_by = [{order, by}]
+    origins = Keyword.get(opts, :origins) || []
 
     query =
       case(deleted) do
         false ->
-          from(ExCatalog.Product,
-            where: [category_id: ^category.id],
+          from(p in ExCatalog.Product,
+            where: p.category_id == ^category.id and p.origin not in ^origins,
             order_by: ^order_by,
             preload: [:variations],
             preload: [:categories],
@@ -284,8 +284,8 @@ defmodule ExCatalog do
           )
 
         true ->
-          from(ExCatalog.Product,
-            where: [category_id: ^category.id],
+          from(p in ExCatalog.Product,
+            where: p.category_id == ^category.id and p.origin not in ^origins,
             preload: [:variations],
             preload: [:categories],
             preload: [:metas],
@@ -330,7 +330,6 @@ defmodule ExCatalog do
         reply
 
       _ ->
-        {data, meta} = reply
 
         modified =
           Enum.map(data, fn x ->
@@ -338,7 +337,7 @@ defmodule ExCatalog do
             %{x | price: price}
           end)
 
-        {modified, meta}
+        {modified, reply.metadata}
     end
   end
 
@@ -352,7 +351,8 @@ defmodule ExCatalog do
 
 
   """
-  def products_by_country(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ []) when is_list(slug) do
+  def products_by_country(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ [])
+      when is_list(slug) do
     products_by_country(slug, limit, nil, nil, currency, deleted, opts)
   end
 
@@ -368,7 +368,7 @@ defmodule ExCatalog do
       case(deleted) do
         false ->
           from(p in ExCatalog.Product,
-            where: p.slug in ^slug,
+            where: p.slug not in ^slug,
             order_by: ^order_by,
             preload: [:variations],
             preload: [:categories],
@@ -380,7 +380,7 @@ defmodule ExCatalog do
 
         true ->
           from(p in ExCatalog.Product,
-            where: p.slug in ^slug,
+            where: p.slug not in ^slug,
             preload: [:variations],
             preload: [:categories],
             preload: [:metas],
@@ -425,7 +425,6 @@ defmodule ExCatalog do
         reply
 
       _ ->
-        {data, meta} = reply
 
         modified =
           Enum.map(data, fn x ->
@@ -433,7 +432,7 @@ defmodule ExCatalog do
             %{x | price: price}
           end)
 
-        {modified, meta}
+        {modified, reply.metadata}
     end
   end
 
@@ -521,7 +520,6 @@ defmodule ExCatalog do
         reply
 
       _ ->
-        {data, meta} = reply
 
         modified =
           Enum.map(data, fn x ->
@@ -529,7 +527,7 @@ defmodule ExCatalog do
             %{x | price: price}
           end)
 
-        {modified, meta}
+        {modified, reply.metadata}
     end
   end
 
