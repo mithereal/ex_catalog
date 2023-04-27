@@ -30,43 +30,34 @@ defmodule ExCatalog.Repo do
 end
 
 defmodule ExCatalog.Repo.Null do
-  use GenServer
+  use Ecto.Repo,
+    otp_app: :ex_catalog,
+    adapter: Ecto.Adapters.Postgres,
+    pool: Ecto.Adapters.SQL.Sandbox,
+    primary_key_type: :uuid
+
+  use Ecto.SoftDelete.Repo
+
   use Paginator
 
-  def child_spec(init) do
-    %{
-      id: __MODULE__,
-      start: {__MODULE__, :start_link, [init]},
-      restart: :transient,
-      type: :worker
-    }
+  @doc """
+  Dynamically loads the repository url from the
+  DATABASE_URL environment variable.
+  """
+  def init(arg, nil) do
+    init(arg, [])
   end
 
-  def start_link([]) do
-    GenServer.start_link(__MODULE__, [], name: :ex_null_repo)
+  def init(_, opts) do
+    {:ok, Keyword.put(opts, :url, System.get_env("DATABASE_URL"))}
   end
 
-  def init(init_arg) do
-    {:ok, init_arg}
-  end
+  @doc """
+  Empty the Database Table
+  """
+  def truncate(schema) do
+    table_name = schema.__schema__(:source)
 
-  def all(_) do
-    []
-  end
-
-  def all(_, _) do
-    []
-  end
-
-  def get_by(_, _) do
-    []
-  end
-
-  def get_by!(_, _) do
-    []
-  end
-
-  def one(_, _) do
-    []
+    query("TRUNCATE #{table_name}", [])
   end
 end

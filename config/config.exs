@@ -27,7 +27,7 @@ import Config
 #
 #     import_config "#{Mix.env()}.exs"
 
-config :ex_catalog, :ecto_repos, [ExCatalog.Repo.Null]
+config :ex_catalog, :ecto_repos, [ExCatalog.Repo]
 
 config :ex_cldr,
   json_library: Jason
