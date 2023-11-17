@@ -358,12 +358,12 @@ defmodule ExCatalog do
 
 
   """
-  def products_by_country(slug, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ [])
-      when is_list(slug) do
-    products_by_country(slug, limit, nil, nil, currency, deleted, opts)
+  def products_by_country(origin, limit \\ 25, currency \\ :USD, deleted \\ false, opts \\ [])
+      when is_list(origin) do
+    products_by_country(origin, limit, nil, nil, currency, deleted, opts)
   end
 
-  def products_by_country(slug, limit, metadata, cursor, currency, deleted, opts) do
+  def products_by_country(origin, limit, metadata, cursor, currency, deleted, opts) do
     import Ecto.Query
     import Ecto.SoftDelete.Query
 
@@ -375,7 +375,7 @@ defmodule ExCatalog do
       case(deleted) do
         false ->
           from(p in ExCatalog.Product,
-            where: p.slug not in ^slug,
+            where: p.origin not in ^origin,
             order_by: ^order_by,
             preload: [:variations],
             preload: [:categories],
@@ -387,7 +387,7 @@ defmodule ExCatalog do
 
         true ->
           from(p in ExCatalog.Product,
-            where: p.slug not in ^slug,
+            where: p.origin not in ^origin,
             preload: [:variations],
             preload: [:categories],
             preload: [:metas],
@@ -481,7 +481,7 @@ defmodule ExCatalog do
 
         true ->
           from(ExCatalog.Product,
-            where: [origin: ^slug],
+            where: [manufacturer: ^manufacturer],
             preload: [:variations],
             preload: [:categories],
             preload: [:metas],
