@@ -27,5 +27,9 @@ defmodule ExCatalog.Repo.Migrations.AddProductsTable do
     alter table(:catalog_metas) do
       add(:product_id, references(:catalog_products, on_delete: :nothing, type: key_type))
     end
+
+    alter table(:catalog_images) do
+      add(:product_id, references(:catalog_products, on_delete: :nothing, type: key_type))
+    end
   end
 end

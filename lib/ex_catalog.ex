@@ -198,7 +198,9 @@ defmodule ExCatalog do
 
   ## Examples
 
-      iex> ExCatalog.product("2242", :USD)
+      iex> price = Money.new(:USD, 100)
+      iex>  product = %{sku: "12345", price: price, title: "test product", sub_title: "test product", description: "test product"}
+      iex> ExCatalog.product(product)
 
 
   """
@@ -248,8 +250,9 @@ defmodule ExCatalog do
   List product with preloads by category and optional currency conversion.
 
   ## Examples
-
-      iex> ExCatalog.products_by_category("test_category", "2242", :USD, false, order_by: :sku)
+      iex> price = Money.new(:USD, 100)
+      iex>  product = %{sku: "12345", price: price, title: "test product", sub_title: "test product", description: "test product"}
+      iex> ExCatalog.products_by_category("test_category", "12345", :USD, false, order_by: :sku)
 
 
   """

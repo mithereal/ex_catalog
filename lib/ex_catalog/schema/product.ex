@@ -36,6 +36,7 @@ defmodule ExCatalog.Product do
     )
 
     has_many(:images, ExCatalog.Image, on_replace: :delete)
+    has_many(:videos, ExCatalog.Video, on_replace: :delete)
     has_many(:metas, ExCatalog.Meta, on_replace: :delete)
 
     timestamps()
@@ -54,10 +55,11 @@ defmodule ExCatalog.Product do
       :description,
       :primary_image_id,
       :owner_id,
-      :origin,
-      :manufacturer
+      :origin
     ])
     |> validate_required([:sku, :price, :title, :sub_title, :description])
+    |> TitleSlug.maybe_generate_slug()
+    |> TitleSlug.unique_constraint()
   end
 
   @doc false
