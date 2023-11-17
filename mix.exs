@@ -69,7 +69,7 @@ defmodule ExCatalog.MixProject do
       {:ecto_autoslug_field, "~> 3.0"},
       {:csv, "~> 3.0", optional: true},
       {:chromic_pdf, "~> 1.7", optional: true},
-      {:excoveralls, "~> 0.14", only: [:test, :dev]},
+      {:excoveralls, "~> 0.14", only: [:test, :dev]}
     ]
   end
 
