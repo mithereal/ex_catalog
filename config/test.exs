@@ -11,6 +11,5 @@ config :ex_catalog, ExCatalog.Repo,
   database: "ex_catalog",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox,
-  port: 55432,
   pool_size: 10,
   primary_key_type: :uuid

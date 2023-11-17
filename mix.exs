@@ -11,6 +11,10 @@ defmodule ExCatalog.MixProject do
       elixir: "~> 1.13",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test
+      ],
       package: package(),
       description: description(),
       deps: deps(),
@@ -64,7 +68,8 @@ defmodule ExCatalog.MixProject do
       {:paginator, "~> 1.2.0"},
       {:ecto_autoslug_field, "~> 3.0"},
       {:csv, "~> 3.0", optional: true},
-      {:chromic_pdf, "~> 1.7", optional: true}
+      {:chromic_pdf, "~> 1.7", optional: true},
+      {:excoveralls, "~> 0.14", only: [:test, :dev]},
     ]
   end
 
