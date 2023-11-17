@@ -24,19 +24,12 @@ defmodule ExCatalogTest do
              }}
   end
 
-#  test "test product" do
-#    price = Money.new(:USD, 100)
-#    product = %{sku: "12345", price: price, title: "test product", sub_title: "test product", description: "test product"}
-#
-#    ExCatalog.Product.new product
-#
-#    assert ExCatalog.product("12345", :USD) == {[],
-#             %Paginator.Page.Metadata{
-#               after: nil,
-#               before: nil,
-#               limit: 25,
-#               total_count: 0,
-#               total_count_cap_exceeded: false
-#             }}
-#  end
+  test "test product" do
+    price = Money.new(:USD, 100)
+    product = %{sku: "12345", price: price, title: "test product", sub_title: "test product", description: "test product"}
+
+    ExCatalog.Product.new product
+
+    assert ExCatalog.product("12345", :USD).sku == "12345"
+  end
 end

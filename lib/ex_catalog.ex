@@ -234,16 +234,18 @@ defmodule ExCatalog do
           |> with_undeleted
       end
    reply =  @repo.all(query)
+
     reply = case List.first(reply) do
         nil -> reply
-        _->
+        record ->
           case currency do
             nil ->
-              reply
+              record
 
-            reply ->
-              {:ok, price} = ExCatalog.Currencies.convert(reply.price, currency)
-              %{reply | price: price}
+            currency ->
+
+              {:ok, price} = ExCatalog.Currencies.convert(record.price, currency)
+              %{record | price: price}
           end
       end
 

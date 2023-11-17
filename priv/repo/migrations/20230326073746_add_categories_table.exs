@@ -12,6 +12,8 @@ defmodule ExCatalog.Repo.Migrations.AddCategoriesTable do
       add(:sort_order, :integer)
       add(:slug, :string, null: false)
       soft_delete_columns()
+      add(:parent_category_id, references(:catalog_categories, on_delete: :nothing, type: key_type))
     end
+
   end
 end
