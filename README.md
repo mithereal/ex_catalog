@@ -1,5 +1,11 @@
 # ExCatalog
 
+[![Coverage Status](https://coveralls.io/repos/github/mithereal/ex_catalog/badge.svg?branch=main)](https://coveralls.io/github/mithereal/ex_catalog?branch=main)
+![CircleCI](https://img.shields.io/circleci/build/github/mithereal/ex_catalog)
+[![Version](https://img.shields.io/hexpm/v/ex_catalog.svg?style=flat-square)](https://hex.pm/packages/ex_catalog)
+![GitHub](https://img.shields.io/github/license/mithereal/ex_catalog)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/mithereal/ex_catalog/main)
+
 ** A General E-commerce Catalog System **
 
 Think of this like an old school paper mail in catalog, we dont need all the fluff (extra db tables etc) as in in most ecommerce implementations, this is just a catalog, decoupled from inventory management with some options such as csv and pdf export, integer or binary primary key.
