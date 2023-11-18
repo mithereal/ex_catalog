@@ -230,29 +230,26 @@ defmodule ExCatalog do
 
     reply = @repo.all(query)
 
-    reply =
-      case List.first(reply) do
-        nil ->
-          reply
+    case List.first(reply) do
+      nil ->
+        reply
 
-        record ->
-          case currency do
-            nil ->
-              record
+      record ->
+        case currency do
+          nil ->
+            record
 
-            currency ->
-              {:ok, price} = ExCatalog.Currencies.convert(record.price, currency)
-              %{record | price: price}
-          end
-      end
+          currency ->
+            {:ok, price} = ExCatalog.Currencies.convert(record.price, currency)
+            %{record | price: price}
+        end
+    end
   end
 
   @doc """
   List product with preloads by category and optional currency conversion.
 
   ## Examples
-      iex> price = Money.new(:USD, 100)
-      iex>  product = %{sku: "12345", price: price, title: "test product", sub_title: "test product", description: "test product"}
       iex> ExCatalog.products_by_category("test_category", 1, :USD, false, order_by: :sku)
 
 
@@ -587,7 +584,6 @@ defmodule ExCatalog do
 
   def active(type, id, false) do
     import Ecto.Query
-    import Ecto.SoftDelete.Query
 
     case type do
       :category ->

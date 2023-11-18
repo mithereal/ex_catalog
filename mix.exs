@@ -1,7 +1,7 @@
 defmodule ExCatalog.MixProject do
   use Mix.Project
 
-  @version "1.5.5"
+  @version "1.5.6"
   @source_url "https://github.com/mithereal/ExCatalog"
 
   def project do
@@ -9,7 +9,6 @@ defmodule ExCatalog.MixProject do
       app: :ex_catalog,
       version: @version,
       elixir: "~> 1.13",
-      build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
@@ -19,7 +18,8 @@ defmodule ExCatalog.MixProject do
       description: description(),
       deps: deps(),
       docs: docs(),
-      aliases: aliases()
+      aliases: aliases(),
+      dialyzer: dialyzer()
     ]
   end
 
@@ -49,6 +49,8 @@ defmodule ExCatalog.MixProject do
   defp docs do
     [
       main: "ExCatalog",
+      homepage_url: @source_url,
+      source_ref: "v#{@version}",
       source_url: @source_url,
       extras: ["README.md"]
     ]
@@ -85,6 +87,19 @@ defmodule ExCatalog.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       install: ["ExCatalog.install", "ecto.setup"]
+    ]
+  end
+
+  defp dialyzer() do
+    [
+      plt_add_deps: :transitive,
+      plt_add_apps: [:ex_unit, :mix],
+      flags: [
+        :error_handling,
+        :race_conditions,
+        :underspecs,
+        :unmatched_returns
+      ]
     ]
   end
 end
