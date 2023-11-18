@@ -40,5 +40,4 @@ defmodule ExCatalogTest do
 
     assert ExCatalog.product("12345", :USD).sku == "12345"
   end
-
 end
