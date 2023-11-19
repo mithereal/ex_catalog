@@ -101,6 +101,7 @@ defmodule ExCatalog do
                 preload: [:metas],
                 preload: [:primary_image],
                 preload: [:images],
+                preload: [:manufacturer],
                 preload: [:videos]
               )
 
@@ -111,6 +112,7 @@ defmodule ExCatalog do
                 preload: [:metas],
                 preload: [:primary_image],
                 preload: [:images],
+                preload: [:manufacturer],
                 preload: [:videos]
               )
               |> with_undeleted
@@ -125,6 +127,7 @@ defmodule ExCatalog do
                 preload: [:categories],
                 preload: [:metas],
                 preload: [:primary_image],
+                preload: [:manufacturer],
                 preload: [:images],
                 preload: [:videos]
               )
@@ -136,6 +139,7 @@ defmodule ExCatalog do
                 preload: [:categories],
                 preload: [:metas],
                 preload: [:primary_image],
+                preload: [:manufacturer],
                 preload: [:images],
                 preload: [:videos]
               )
@@ -211,6 +215,7 @@ defmodule ExCatalog do
             preload: [:categories],
             preload: [:metas],
             preload: [:primary_image],
+            preload: [:manufacturer],
             preload: [:images],
             preload: [:videos]
           )
@@ -222,6 +227,7 @@ defmodule ExCatalog do
             preload: [:categories],
             preload: [:metas],
             preload: [:primary_image],
+            preload: [:manufacturer],
             preload: [:images],
             preload: [:videos]
           )
@@ -284,6 +290,7 @@ defmodule ExCatalog do
                 preload: [:categories],
                 preload: [:metas],
                 preload: [:primary_image],
+                preload: [:manufacturer],
                 preload: [:images],
                 preload: [:videos]
               )
@@ -295,6 +302,7 @@ defmodule ExCatalog do
                 preload: [:categories],
                 preload: [:metas],
                 preload: [:primary_image],
+                preload: [:manufacturer],
                 preload: [:images],
                 preload: [:videos]
               )
@@ -379,6 +387,7 @@ defmodule ExCatalog do
             preload: [:categories],
             preload: [:metas],
             preload: [:primary_image],
+            preload: [:manufacturer],
             preload: [:images],
             preload: [:videos]
           )
@@ -390,6 +399,7 @@ defmodule ExCatalog do
             preload: [:categories],
             preload: [:metas],
             preload: [:primary_image],
+            preload: [:manufacturer],
             preload: [:images],
             preload: [:videos]
           )
@@ -479,6 +489,7 @@ defmodule ExCatalog do
                 preload: [:categories],
                 preload: [:metas],
                 preload: [:primary_image],
+                preload: [:manufacturer],
                 preload: [:images],
                 preload: [:videos]
               )
@@ -490,6 +501,7 @@ defmodule ExCatalog do
                 preload: [:categories],
                 preload: [:metas],
                 preload: [:primary_image],
+                preload: [:manufacturer],
                 preload: [:images],
                 preload: [:videos]
               )

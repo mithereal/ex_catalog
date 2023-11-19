@@ -67,7 +67,7 @@ defmodule ExCatalog.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 3.5"},
       {:ecto_sql, "~> 3.5"},
-      {:ecto_soft_delete, git: "https://github.com/data-twister/ecto_soft_delete"},
+      {:ecto_soft_delete, ">= 0.0.0"},
       {:ex_money, ">= 0.0.0"},
       {:ex_money_sql, ">= 0.0.0"},
       {:paginator, "~> 1.2.0"},
