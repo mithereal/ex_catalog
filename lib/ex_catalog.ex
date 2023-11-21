@@ -580,11 +580,11 @@ defmodule ExCatalog do
           |> with_undeleted
       end
 
-    case Keyword.has_key?(@repo.__info__(:functions), :soft_restore!) do
+    case Keyword.has_key?(@repo.__info__(:functions), :restore!) do
       true ->
         try do
           @repo.one!(query)
-          |> @repo.soft_restore!()
+          |> @repo.restore!()
         rescue
           _ -> {:error, "Not Available"}
         end
